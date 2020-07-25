@@ -6,6 +6,7 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  bool isSignIn = false;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -54,6 +55,14 @@ class _SignInScreenState extends State<SignInScreen> {
                     ),
                   ],
                 ),
+                SizedBox(height: 15),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    Text('Lupa Password?', style: greyTextFont),
+                    Text('Klik Disini.', style: redTextFont)
+                  ],
+                ),
                 Button(
                   margin: EdgeInsets.only(top: 100.0, bottom: 20.0),
                   width: (MediaQuery.of(context).orientation ==
@@ -72,7 +81,20 @@ class _SignInScreenState extends State<SignInScreen> {
                   onTap: () {
                     AuthServices.signIn('admin@dbloods.com', '123456');
                   },
-                )
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Belum punya akun? ',
+                      style: greyTextFont.copyWith(fontSize: 14),
+                    ),
+                    Text(
+                      'Sign Up.',
+                      style: redTextFont.copyWith(fontSize: 14),
+                    ),
+                  ],
+                ),
               ],
             ),
           ),
