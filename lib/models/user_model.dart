@@ -10,7 +10,6 @@ class User extends Equatable {
   final String tanggalLahir;
   final String jenkel;
   final String pekerjaan;
-  //final String password;
 
   User(
     this.id,
@@ -22,13 +21,7 @@ class User extends Equatable {
     this.tanggalLahir,
     this.jenkel,
     this.pekerjaan,
-    //this.password,
   });
-
-  @override
-  String toString() {
-    return '$id - $nama - $email - $golDarah - $pekerjaan';
-  }
 
   @override
   List<Object> get props => [
@@ -41,6 +34,5 @@ class User extends Equatable {
         tanggalLahir,
         jenkel,
         pekerjaan,
-        //password,
       ];
 }
