@@ -25,9 +25,8 @@ class TextInputField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,
-      cursorColor: blackColor,
+      cursorColor: whiteColor,
       decoration: InputDecoration(
-        hoverColor: mainColor,
         suffixIcon: suffixIcon,
       ),
     );

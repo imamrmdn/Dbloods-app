@@ -24,21 +24,14 @@ class OnBoardingScreenTwo extends StatelessWidget {
               ),
               Button(
                 margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
-                width:
-                    (MediaQuery.of(context).orientation == Orientation.portrait)
-                        ? SizeConfig.defaultWidth / 1.4
-                        : SizeConfig.defaultWidth / 2.4,
-                height:
-                    (MediaQuery.of(context).orientation == Orientation.portrait)
-                        ? SizeConfig.defaultWidth / 8
-                        : 80, //65
+                width: SizeConfig.defaultWidth / 1.4,
+                height: SizeConfig.defaultWidth / 8, //65
+                color: mainColor,
                 text: Text(
-                  'AYO, GUNAKAN DBLOODS SEKARANG',
+                  'AYO, GUNAKAN DBLOODS SEKARANG !',
                   style: whiteTextFont3.copyWith(
                       fontSize: 14.0, fontWeight: FontWeight.normal),
                 ),
-                color: mainColor,
-                splashColor: accentColor4,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

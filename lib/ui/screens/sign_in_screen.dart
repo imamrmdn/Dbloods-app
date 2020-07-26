@@ -7,9 +7,17 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool isSignIn = false;
+  bool isEmailValid = false;
+  bool isPasswordValid = false;
   bool _showPassword = false;
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    context
+        .bloc<ThemeBloc>()
+        .add(ChangeTheme(ThemeData().copyWith(primaryColor: whiteColor)));
+
     return WillPopScope(
       onWillPop: () {
         context.bloc<ScreenBloc>().add(GoToOnBoardingScreen());
@@ -49,9 +57,15 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: blackTextFont.copyWith(fontSize: 18.0),
                   ),
                   TextInputField(
+                    controller: emailController,
                     obscureText: false,
                     textInputType: TextInputType.emailAddress,
                     suffixIcon: Icon(Icons.email, color: blackColor),
+                    onChanged: (text) {
+                      setState(() {
+                        isEmailValid = EmailValidator.validate(text);
+                      });
+                    },
                   ),
                   SizedBox(height: 25),
                   Text(
@@ -59,6 +73,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     style: blackTextFont.copyWith(fontSize: 18.0),
                   ),
                   TextInputField(
+                    controller: passwordController,
                     obscureText: !_showPassword,
                     textInputType: TextInputType.text,
                     suffixIcon: GestureDetector(
@@ -72,6 +87,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         color: blackColor,
                       ),
                     ),
+                    onChanged: (text) {
+                      setState(() {
+                        isPasswordValid = text.length >= 6;
+                      });
+                    },
                   ),
                 ],
               ),
@@ -85,24 +105,49 @@ class _SignInScreenState extends State<SignInScreen> {
               ),
               Button(
                 margin: EdgeInsets.only(top: 50.0, bottom: 20.0),
-                width:
-                    (MediaQuery.of(context).orientation == Orientation.portrait)
-                        ? SizeConfig.defaultWidth / 1.4
-                        : SizeConfig.defaultWidth / 2.8,
-                height:
-                    (MediaQuery.of(context).orientation == Orientation.portrait)
-                        ? SizeConfig.defaultWidth / 8
-                        : 80, //65
-                text: Text(
-                  'Sign In',
-                  style: whiteTextFont.copyWith(
-                      fontSize: 16.0, fontWeight: FontWeight.bold),
+                width: SizeConfig.defaultWidth / 1.4,
+                height: SizeConfig.defaultWidth / 8, //65
+                text: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Text(
+                      'Sign In',
+                      style: whiteTextFont.copyWith(
+                          fontSize: 16.0, fontWeight: FontWeight.bold),
+                    ),
+                    SizedBox(width: 5),
+                    isSignIn ? Loading(color: whiteColor) : Text('')
+                  ],
                 ),
-                onTap: () {
-                  AuthServices.signIn('admin@dbloods.com', '123456');
-                },
-                color: blackColor,
-                splashColor: mainColor,
+                onTap: isEmailValid && isPasswordValid
+                    ? () async {
+                        setState(() {
+                          isSignIn = true;
+                        });
+                        //
+                        SignInSignUpResult result = await AuthServices.signIn(
+                          emailController.text,
+                          passwordController.text,
+                        );
+                        //
+                        if (result.user == null) {
+                          setState(() {
+                            isSignIn = false;
+                          });
+                          //
+                          Flushbar(
+                            duration: Duration(seconds: 3),
+                            flushbarPosition: FlushbarPosition.TOP,
+                            backgroundColor: Colors.yellowAccent,
+                            messageText: Text(result.message,
+                                style: blackTextFont.copyWith(
+                                    fontWeight: FontWeight.bold)),
+                            leftBarIndicatorColor: blackColor,
+                          )..show(context);
+                        }
+                      }
+                    : null,
+                color: isEmailValid && isPasswordValid ? blackColor : greyColor,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
