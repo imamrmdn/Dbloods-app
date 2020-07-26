@@ -20,11 +20,12 @@ class TextInputField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return TextField(
+      style: blackTextFont,
       onChanged: onChanged,
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,
-      cursorColor: mainColor,
+      cursorColor: blackColor,
       decoration: InputDecoration(
         hoverColor: mainColor,
         suffixIcon: suffixIcon,

@@ -6,6 +6,8 @@ class Button extends StatelessWidget {
   final double height;
   final Function onTap;
   final Text text;
+  final Color color;
+  final Color splashColor;
 
   Button({
     this.margin,
@@ -13,6 +15,8 @@ class Button extends StatelessWidget {
     this.height,
     this.onTap,
     this.text,
+    this.color,
+    this.splashColor,
   });
 
   @override
@@ -22,11 +26,11 @@ class Button extends StatelessWidget {
       width: width,
       height: height, //65
       child: Material(
-        color: mainColor,
+        color: color,
         borderRadius: borderRadius8,
         child: InkWell(
           onTap: onTap,
-          splashColor: accentColor4,
+          splashColor: splashColor,
           borderRadius: borderRadius8,
           child: Center(
             child: text,

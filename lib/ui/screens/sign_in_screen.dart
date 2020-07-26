@@ -7,6 +7,7 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   bool isSignIn = false;
+  bool _showPassword = false;
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -15,88 +16,108 @@ class _SignInScreenState extends State<SignInScreen> {
         return;
       },
       child: Scaffold(
-        backgroundColor: whiteColor,
+        backgroundColor: mainColor,
         body: SafeArea(
           minimum: EdgeInsets.only(left: 30.0, right: 30.0),
-          child: Center(
-            child: ListView(
-              children: <Widget>[
-                Container(
-                  margin: EdgeInsets.only(left: 70.0, right: 70.0, top: 70.0),
-                  width: 210,
-                  height: 85,
-                  child: SvgPicture.asset(
-                    'assets/logo_dbloods.svg',
-                    fit: BoxFit.fill,
-                  ),
+          child: ListView(
+            children: <Widget>[
+              Container(
+                margin: EdgeInsets.only(top: 30.0),
+                child: SvgPicture.asset(
+                  'assets/logo2.svg',
+                  //fit: BoxFit.fill,
+                  height: 150.0,
+                  width: 90.0,
                 ),
-                SizedBox(height: 150),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      'Alamat Email :',
-                      style: greyTextFont.copyWith(fontSize: 18.0),
-                    ),
-                    TextInputField(
-                      obscureText: false,
-                      textInputType: TextInputType.emailAddress,
-                      suffixIcon: Icon(Icons.email),
-                    ),
-                    SizedBox(height: 25),
-                    Text(
-                      'Password :',
-                      style: greyTextFont.copyWith(fontSize: 18.0),
-                    ),
-                    TextInputField(
-                      obscureText: true,
-                      textInputType: TextInputType.text,
-                      suffixIcon: Icon(Icons.visibility),
-                    ),
-                  ],
-                ),
-                SizedBox(height: 15),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: <Widget>[
-                    Text('Lupa Password?', style: greyTextFont),
-                    Text('Klik Disini.', style: redTextFont)
-                  ],
-                ),
-                Button(
-                  margin: EdgeInsets.only(top: 100.0, bottom: 20.0),
-                  width: (MediaQuery.of(context).orientation ==
-                          Orientation.portrait)
-                      ? SizeConfig.defaultWidth / 1.4
-                      : SizeConfig.defaultWidth / 2.8,
-                  height: (MediaQuery.of(context).orientation ==
-                          Orientation.portrait)
-                      ? SizeConfig.defaultWidth / 8
-                      : 80, //65
-                  text: Text(
-                    'Sign In',
+              ),
+              Center(
+                child: Container(
+                  margin: EdgeInsets.only(top: 20.0),
+                  child: Text(
+                    'Dbloods',
                     style: whiteTextFont.copyWith(
-                        fontSize: 16.0, fontWeight: FontWeight.bold),
+                        fontSize: 24.0, fontWeight: FontWeight.bold),
                   ),
-                  onTap: () {
-                    AuthServices.signIn('admin@dbloods.com', '123456');
-                  },
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Text(
-                      'Belum punya akun? ',
-                      style: greyTextFont.copyWith(fontSize: 14),
+              ),
+              SizedBox(height: 80),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Text(
+                    'Alamat Email :',
+                    style: blackTextFont.copyWith(fontSize: 18.0),
+                  ),
+                  TextInputField(
+                    obscureText: false,
+                    textInputType: TextInputType.emailAddress,
+                    suffixIcon: Icon(Icons.email, color: blackColor),
+                  ),
+                  SizedBox(height: 25),
+                  Text(
+                    'Password :',
+                    style: blackTextFont.copyWith(fontSize: 18.0),
+                  ),
+                  TextInputField(
+                    obscureText: !_showPassword,
+                    textInputType: TextInputType.text,
+                    suffixIcon: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _showPassword = !_showPassword;
+                        });
+                      },
+                      child: Icon(
+                        _showPassword ? Icons.visibility : Icons.visibility_off,
+                        color: blackColor,
+                      ),
                     ),
-                    Text(
-                      'Sign Up.',
-                      style: redTextFont.copyWith(fontSize: 14),
-                    ),
-                  ],
+                  ),
+                ],
+              ),
+              SizedBox(height: 15),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: <Widget>[
+                  Text('Lupa Password?', style: blackTextFont),
+                  Text('Klik Disini.', style: whiteTextFont)
+                ],
+              ),
+              Button(
+                margin: EdgeInsets.only(top: 50.0, bottom: 20.0),
+                width:
+                    (MediaQuery.of(context).orientation == Orientation.portrait)
+                        ? SizeConfig.defaultWidth / 1.4
+                        : SizeConfig.defaultWidth / 2.8,
+                height:
+                    (MediaQuery.of(context).orientation == Orientation.portrait)
+                        ? SizeConfig.defaultWidth / 8
+                        : 80, //65
+                text: Text(
+                  'Sign In',
+                  style: whiteTextFont.copyWith(
+                      fontSize: 16.0, fontWeight: FontWeight.bold),
                 ),
-              ],
-            ),
+                onTap: () {
+                  AuthServices.signIn('admin@dbloods.com', '123456');
+                },
+                color: blackColor,
+                splashColor: mainColor,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Text(
+                    'Belum punya akun? ',
+                    style: blackTextFont.copyWith(fontSize: 14),
+                  ),
+                  Text(
+                    'Sign Up.',
+                    style: whiteTextFont.copyWith(fontSize: 14),
+                  ),
+                ],
+              ),
+            ],
           ),
         ),
       ),

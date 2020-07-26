@@ -37,6 +37,8 @@ class OnBoardingScreenTwo extends StatelessWidget {
                   style: whiteTextFont3.copyWith(
                       fontSize: 14.0, fontWeight: FontWeight.normal),
                 ),
+                color: mainColor,
+                splashColor: accentColor4,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
