@@ -11,3 +11,4 @@ part 'button/button.dart';
 part 'button/button_next.dart';
 part 'text_input/text_field.dart';
 part 'loading/loading.dart';
+part 'bottom_nav_bar_custom/bottom_nav_bar_custom.dart';

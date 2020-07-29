@@ -6,41 +6,98 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
+  int bottomNavBarIndex;
+  PageController pageController;
+
+  @override
+  void initState() {
+    super.initState();
+    bottomNavBarIndex = 0;
+    pageController = PageController(initialPage: bottomNavBarIndex);
+  }
+
   @override
   Widget build(BuildContext context) {
-    // final yearsAgo = DateTime.now().subtract(Duration(days: 365 * 22)).year;
-    // print(yearsAgo);
-    // final now = DateTime.now().year;
-    // final age = now - yearsAgo;
-    // print(age);
-
-    // String yearNow = DateFormat('yyyy').format(DateTime.now());
-    // int.parse(yearNow);
-    // print(yearNow);
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            BlocBuilder<UserBloc, UserState>(
-                builder: (_, userState) => (userState is UserLoaded)
-                    ? Column(
-                        children: <Widget>[
-                          Text(userState.user.nama),
-                          Text(userState.user.pekerjaan),
-                          Text('tanggal lahir: ' + userState.user.tanggalLahir),
-                        ],
-                      )
-                    : Text('')),
-            RaisedButton(
-              child: Icon(Icons.backspace),
-              onPressed: () {
-                AuthServices.signOut();
-              },
-            )
-          ],
-        ),
-      ),
-    );
+        backgroundColor: mainColor,
+        body: SafeArea(
+          child: Stack(
+            children: <Widget>[
+              //
+              Container(
+                width: SizeConfig.defaultWidth,
+                height: SizeConfig.defaultHeight,
+                color: Color(0xFFEDEDED),
+              ),
+              //
+              //
+              PageView(
+                controller: pageController,
+                children: <Widget>[
+                  HomeScreen(),
+                  InfoScreen(),
+                  StokScreen(),
+                  ProfileScreen(),
+                ],
+                onPageChanged: (index) {
+                  setState(() {
+                    bottomNavBarIndex = index;
+                  });
+                },
+              ),
+              BottomNavBarCustom(
+                currentIndex: bottomNavBarIndex,
+                onTap: (index) {
+                  setState(() {
+                    bottomNavBarIndex = index;
+                    pageController.jumpToPage(index);
+                  });
+                },
+                items: [
+                  BottomNavigationBarItem(
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6.0),
+                      height: 20,
+                      child: SvgPicture.asset((bottomNavBarIndex == 0)
+                          ? 'assets/home.svg'
+                          : 'assets/home_grey.svg'),
+                    ),
+                    title: Text('Home'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6.0),
+                      height: 20,
+                      child: SvgPicture.asset((bottomNavBarIndex == 1)
+                          ? 'assets/info.svg'
+                          : 'assets/info_grey.svg'),
+                    ),
+                    title: Text('Info'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6.0),
+                      height: 20,
+                      child: SvgPicture.asset((bottomNavBarIndex == 2)
+                          ? 'assets/stok.svg'
+                          : 'assets/stok_grey.svg'),
+                    ),
+                    title: Text('Stok'),
+                  ),
+                  BottomNavigationBarItem(
+                    icon: Container(
+                      margin: EdgeInsets.only(bottom: 6.0),
+                      height: 20,
+                      child: SvgPicture.asset((bottomNavBarIndex == 3)
+                          ? 'assets/profile.svg'
+                          : 'assets/profile_grey.svg'),
+                    ),
+                    title: Text('Profile'),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ));
   }
 }
