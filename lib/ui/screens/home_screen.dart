@@ -7,54 +7,71 @@ class HomeScreen extends StatelessWidget {
     return Stack(
       children: <Widget>[
         Container(
+          padding: EdgeInsets.fromLTRB(30.0, 20.0, 30.0, 40.0),
           width: SizeConfig.defaultWidth,
           height: SizeConfig.defaultHeight,
           color: mainColor,
-        ),
-        Container(
-          width: SizeConfig.defaultWidth,
-          height: 104,
-          padding: EdgeInsets.only(top: 30.0, left: 50.0),
-          child: BlocBuilder<UserBloc, UserState>(builder: (_, userState) {
-            if (userState is UserLoaded) {
-              return Row(
-                children: <Widget>[
-                  Container(
-                    padding: EdgeInsets.all(5),
-                    decoration: BoxDecoration(
-                      shape: BoxShape.circle,
-                      border: Border.all(color: greyColor, width: 1),
+          child: BlocBuilder<UserBloc, UserState>(
+            builder: (_, userState) {
+              if (userState is UserLoaded) {
+                return Row(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Container(
+                      padding: EdgeInsets.all(5.0),
+                      width: 65.0,
+                      height: 65.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        border: Border.all(color: whiteColor, width: 1),
+                      ),
+                      child: Stack(
+                        children: <Widget>[
+                          Loading(color: blackColor),
+                          Container(
+                            width: 50.0,
+                            height: 50.0,
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: (userState.user.profilePicture == "")
+                                      ? AssetImage('assets/user_profile.png')
+                                      : NetworkImage(
+                                          userState.user.profilePicture),
+                                )),
+                          )
+                        ],
+                      ),
                     ),
-                    child: Stack(
+                    SizedBox(width: 20.0),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Loading(color: blackColor, width: 20, height: 20),
-                        Container(
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                          ),
-                          child: (userState.user.profilePicture == " ")
-                              ? SvgPicture.asset('assets/User_Profile.svg')
-                              : Image.network(userState.user.profilePicture),
+                        SizedBox(height: 12.0),
+                        SizedBox(
+                          width: SizeConfig.defaultWidth -
+                              2.0 * 30.0 -
+                              65.0 -
+                              12.0 -
+                              20.0,
+                          child: Text('Selamat datang, ${userState.user.nama}',
+                              style: whiteTextFont.copyWith(
+                                  fontWeight: FontWeight.bold),
+                              maxLines: 1,
+                              overflow: TextOverflow.clip),
                         ),
+                        Text('Mau ikut event donor atau cari stok darah?',
+                            style: whiteTextFont.copyWith(
+                                fontWeight: FontWeight.bold))
                       ],
                     ),
-                  ),
-                  SizedBox(width: 20.0),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      Text('Selamat datang, ${userState.user.nama}',
-                          style: whiteTextFont),
-                      Text('Mau ikut event donor atau cari stok darah ?',
-                          style: whiteTextFont),
-                    ],
-                  )
-                ],
-              );
-            } else {
-              return SvgPicture.asset('assets/User_Profile.svg');
-            }
-          }),
+                  ],
+                );
+              } else {
+                return Loading2();
+              }
+            },
+          ),
         ),
         Container(
           margin: EdgeInsets.only(top: 103),
