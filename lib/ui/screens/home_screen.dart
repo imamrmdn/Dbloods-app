@@ -29,8 +29,8 @@ class HomeScreen extends StatelessWidget {
                         children: <Widget>[
                           Loading(color: blackColor),
                           Container(
-                            width: 50.0,
-                            height: 50.0,
+                            width: 65.0,
+                            height: 65.0,
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 image: DecorationImage(
@@ -68,7 +68,10 @@ class HomeScreen extends StatelessWidget {
                   ],
                 );
               } else {
-                return Loading2();
+                return Align(
+                  alignment: Alignment.topCenter,
+                  child: Loading2(height: 50.0, width: 50.0),
+                );
               }
             },
           ),

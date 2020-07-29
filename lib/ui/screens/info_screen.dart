@@ -3,6 +3,12 @@ part of 'screens.dart';
 class InfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    var text = [];
+
+    for (int i = 0; i <= 50; i++) {
+      text.add(i);
+    }
+
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -39,8 +45,12 @@ class InfoScreen extends StatelessWidget {
               width: SizeConfig.defaultWidth,
               height: SizeConfig.defaultHeight,
               color: whiteColor,
-              child: Center(
-                child: Text('tab informasi'),
+              child: SafeArea(
+                minimum: minimumMarginRightLeft,
+                child: ListView.builder(
+                  itemCount: text.length,
+                  itemBuilder: (_, i) => Text('Soon $i'),
+                ),
               ),
             ),
             Container(
