@@ -32,6 +32,11 @@ class OnBoardingScreenTwo extends StatelessWidget {
                   style: whiteTextFont3.copyWith(
                       fontSize: 14.0, fontWeight: FontWeight.normal),
                 ),
+                onTap: () {
+                  context
+                      .bloc<ScreenBloc>()
+                      .add(GoToRegistrationScreen(RegistrationData()));
+                },
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

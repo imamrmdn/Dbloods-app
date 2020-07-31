@@ -60,6 +60,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: emailController,
                     obscureText: false,
                     textInputType: TextInputType.emailAddress,
+                    cursorColor: whiteColor,
                     suffixIcon: Icon(Icons.email, color: blackColor),
                     onChanged: (text) {
                       setState(() {
@@ -76,6 +77,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     controller: passwordController,
                     obscureText: !_showPassword,
                     textInputType: TextInputType.text,
+                    cursorColor: whiteColor,
                     suffixIcon: GestureDetector(
                       onTap: () {
                         setState(() {
@@ -156,9 +158,16 @@ class _SignInScreenState extends State<SignInScreen> {
                     'Belum punya akun? ',
                     style: blackTextFont.copyWith(fontSize: 14),
                   ),
-                  Text(
-                    'Sign Up.',
-                    style: whiteTextFont.copyWith(fontSize: 14),
+                  GestureDetector(
+                    onTap: () {
+                      context
+                          .bloc<ScreenBloc>()
+                          .add(GoToRegistrationScreen(RegistrationData()));
+                    },
+                    child: Text(
+                      'Sign Up.',
+                      style: whiteTextFont.copyWith(fontSize: 14),
+                    ),
                   ),
                 ],
               ),

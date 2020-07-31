@@ -7,6 +7,8 @@ class TextInputField extends StatelessWidget {
   final TextEditingController controller;
   final Function onChanged;
   final Widget suffixIcon;
+  final Color cursorColor;
+  final String labelText;
 
   TextInputField({
     this.hintText,
@@ -15,6 +17,8 @@ class TextInputField extends StatelessWidget {
     this.controller,
     this.onChanged,
     this.suffixIcon,
+    this.cursorColor,
+    this.labelText,
   });
 
   @override
@@ -25,9 +29,12 @@ class TextInputField extends StatelessWidget {
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,
-      cursorColor: whiteColor,
+      cursorColor: cursorColor,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
+        hintText: hintText,
+        labelText: labelText,
+        //hintStyle: blackTextFont.copyWith(fontWeight: FontWeight.bold),
       ),
     );
   }

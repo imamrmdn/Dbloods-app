@@ -22,7 +22,11 @@ class Wrapper extends StatelessWidget {
     return BlocBuilder<ScreenBloc, ScreenState>(
       builder: (_, screenState) => (screenState is OnOnBoardingScreen)
           ? OnBoardingScreen()
-          : (screenState is OnSignInScreen) ? SignInScreen() : MainScreen(),
+          : (screenState is OnSignInScreen)
+              ? SignInScreen()
+              : (screenState is OnRegistrationScreen)
+                  ? SignUpScreen(screenState.registrationData)
+                  : MainScreen(),
     );
   }
 }

@@ -23,3 +23,11 @@ class OnMainScreen extends ScreenState {
   @override
   List<Object> get props => [];
 }
+
+class OnRegistrationScreen extends ScreenState {
+  final RegistrationData registrationData;
+
+  OnRegistrationScreen(this.registrationData);
+  @override
+  List<Object> get props => [];
+}
