@@ -3,9 +3,7 @@ part of 'screens.dart';
 class HomeScreen extends StatelessWidget {
   //calculate age method
   String format(String date) {
-    final yearsNow =
-        int.parse(DateFormat('yyyy').format(DateTime.now()).toString());
-
+    final yearsNow = DateTime.now().year;
     final yearsAgo = int.parse(date);
 
     final age = yearsNow - yearsAgo;
@@ -67,7 +65,7 @@ class HomeScreen extends StatelessWidget {
                               12.0 -
                               20.0,
                           child: Text(
-                              '${userState.user.nama}, Gol Darah: ${userState.user.golDarah}',
+                              '${userState.user.nama}, ${format(userState.user.tanggalLahir.split('-').last)} Gol Darah: ${userState.user.golDarah}',
                               style: whiteTextFont.copyWith(
                                   fontWeight: FontWeight.bold),
                               maxLines: 1,
