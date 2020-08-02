@@ -1,16 +1,6 @@
 part of 'screens.dart';
 
 class HomeScreen extends StatelessWidget {
-  //calculate age method
-  String format(String date) {
-    final yearsNow = DateTime.now().year;
-    final yearsAgo = int.parse(date);
-
-    final age = yearsNow - yearsAgo;
-    print('umur $age tahun');
-    return age.toString();
-  }
-
   @override
   Widget build(BuildContext context) {
     bool isLoading = false;
@@ -64,8 +54,7 @@ class HomeScreen extends StatelessWidget {
                               65.0 -
                               12.0 -
                               20.0,
-                          child: Text(
-                              '${userState.user.nama}, ${format(userState.user.tanggalLahir.split('-').last)} Gol Darah: ${userState.user.golDarah}',
+                          child: Text('Selamat Datang, ${userState.user.nama}',
                               style: whiteTextFont.copyWith(
                                   fontWeight: FontWeight.bold),
                               maxLines: 1,

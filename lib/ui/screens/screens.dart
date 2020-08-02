@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:dbloods_app/bloc/blocs.dart';
 import 'package:dbloods_app/models/models.dart';
 
@@ -12,7 +10,6 @@ import 'package:flushbar/flushbar.dart';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:provider/provider.dart';
@@ -28,11 +25,3 @@ part 'home_screen.dart';
 part 'info_screen.dart';
 part 'stok_screen.dart';
 part 'profile_screen.dart';
-
-//imagepicker to use registration or signup screen and edit profile screen
-Future<File> getImage() async {
-  // ignore: deprecated_member_use
-  var image = await ImagePicker.pickImage(source: ImageSource.gallery);
-
-  return image;
-}
