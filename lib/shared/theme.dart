@@ -10,6 +10,7 @@ const Color greyColor = Colors.grey;
 
 BorderRadius borderRadius8 = BorderRadius.circular(8);
 BorderRadius borderRadius10 = BorderRadius.circular(10);
+BorderRadius borderRadius5 = BorderRadius.circular(5);
 
 EdgeInsets minimumMarginRightLeft = EdgeInsets.only(right: 20.0, left: 20.0);
 

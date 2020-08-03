@@ -27,16 +27,47 @@ class _SignUpScreenState extends State<SignUpScreen> {
     'O -',
     'AB -',
   ];
+  final List<String> pekerjaan = [
+    'TNI',
+    'POLRI',
+    'Peg. Negeri',
+    'Peg. Swasta',
+    'Mahasiswa',
+    'Dosen',
+    'Dokter',
+    'Wiraswasta',
+    'Buruh',
+    'Pedagang',
+    'Lain-lain',
+  ];
   String _currentGolDarah;
+  String jenkelVal;
+  String pekerjaanVal;
+  int jenkelType = 0;
+  int _defaultChoiceIndex = 4;
   bool _showPassword = false;
   bool _showConfirmPassword = false;
+  //bool _isSelected = false;
+
+  void _handleJenkelType(int value) {
+    setState(() {
+      jenkelType = value;
+      switch (jenkelType) {
+        case 1:
+          jenkelVal = 'Laki-Laki';
+          break;
+        case 2:
+          jenkelVal = 'Perempuan';
+          break;
+      }
+    });
+  }
 
   @override
   void initState() {
     super.initState();
-    //namaController.text = widget.registrationData.nama;
+
     emailController.text = widget.registrationData.email;
-    //tempatLahirController.text = widget.registrationData.tempatLahir;
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
   }
 
@@ -172,6 +203,202 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   )
                 ],
               ),
+              sizedBoxDefault,
+              Text('Jenis Kelamin', style: blackTextFont),
+              //Radio button
+              Row(
+                children: <Widget>[
+                  //
+                  Radio(
+                    value: 1,
+                    groupValue: jenkelType,
+                    onChanged: _handleJenkelType,
+                    activeColor: mainColor,
+                  ),
+                  Text('Laki - Laki'),
+                  SizedBox(width: 30.0),
+                  //
+                  Radio(
+                    value: 2,
+                    groupValue: jenkelType,
+                    onChanged: _handleJenkelType,
+                    activeColor: mainColor,
+                  ),
+                  Text('Perempuan'),
+                ],
+              ),
+              sizedBoxDefault,
+              Text('Pekerjaan', style: blackTextFont),
+              sizedBoxDefault,
+              //
+              Wrap(
+                children: List<Widget>.generate(
+                    pekerjaan.length,
+                    (index) => Container(
+                          margin: EdgeInsets.symmetric(horizontal: 5),
+                          child: ChoiceChip(
+                            selected: _defaultChoiceIndex == index,
+                            selectedColor: mainColor,
+                            label: Text(
+                              pekerjaan[index],
+                              style: blackTextFont,
+                            ),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: borderRadius5,
+                              side: BorderSide(width: 1, color: greyColor),
+                            ),
+                            backgroundColor: whiteColor,
+                            onSelected: (selected) {
+                              setState(() {
+                                _defaultChoiceIndex = selected ? index : null;
+                              });
+                            },
+                          ),
+                        )).toList(),
+              ),
+
+              TextInputField(
+                obscureText: !_showPassword,
+                controller: passwordController,
+                cursorColor: mainColor,
+                textInputType: TextInputType.text,
+                hintText: 'Password',
+                suffixIcon: GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        _showPassword = !_showPassword;
+                      });
+                    },
+                    child: Icon(_showPassword
+                        ? Icons.visibility
+                        : Icons.visibility_off)),
+              ),
+              sizedBoxDefault,
+              TextInputField(
+                obscureText: !_showConfirmPassword,
+                controller: passwordController,
+                cursorColor: mainColor,
+                textInputType: TextInputType.text,
+                hintText: 'Confirm Password',
+                suffixIcon: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      _showConfirmPassword = !_showConfirmPassword;
+                    });
+                  },
+                  child: Icon(_showConfirmPassword
+                      ? Icons.visibility
+                      : Icons.visibility_off),
+                ),
+              ),
+              sizedBoxDefault,
+              RaisedButton(
+                child: Text('print debug'),
+                onPressed: () {
+                  if (!(namaController.text.trim() != '' &&
+                      emailController.text.trim() != '' &&
+                      tempatLahirController.text.trim() != '' &&
+                      tanggalLahirController.text.trim() != '' &&
+                      passwordController.text.trim() != '' &&
+                      confirmPasswordController.text.trim() != '')) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text('Silahkan isi semua field.',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (!EmailValidator.validate(emailController.text)) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text('Format email salah anda salah!',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (_currentGolDarah == null) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text('Golongan Darah belum diisi',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (!(tempatLahirController.text.length <= 15)) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text(
+                          'Tempat Lahir tidak boleh lebih dari 15 kata.',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (!(jenkelVal != null &&
+                      _defaultChoiceIndex != null)) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text(
+                          'Jenis kelamin dan pekerjaan harus diisi',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (passwordController.text !=
+                      confirmPasswordController.text) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text(
+                          'Password tidak sama dengan Confirm password',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else if (passwordController.text.length < 6) {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Text(
+                          'Password minimal 6 karakter atau lebih',
+                          style: blackTextFont),
+                      backgroundColor: Colors.yellow,
+                      icon: Icon(Icons.info_outline),
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  } else {
+                    Flushbar(
+                      duration: Duration(seconds: 2),
+                      messageText: Column(
+                        children: <Widget>[
+                          Text('${namaController.text}', style: blackTextFont),
+                          Text('$_currentGolDarah', style: blackTextFont),
+                          Text('${emailController.text}', style: blackTextFont),
+                          Text('${tempatLahirController.text}',
+                              style: blackTextFont),
+                          Text('${tanggalLahirController.text}',
+                              style: blackTextFont),
+                          Text('$jenkelVal', style: blackTextFont),
+                          Text('$_defaultChoiceIndex', style: blackTextFont),
+                        ],
+                      ),
+                      backgroundColor: Colors.green,
+                      flushbarPosition: FlushbarPosition.TOP,
+                      leftBarIndicatorColor: Colors.teal,
+                    )..show(context);
+                  }
+                },
+              )
               //
             ],
           ),

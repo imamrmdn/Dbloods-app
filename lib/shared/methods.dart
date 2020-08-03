@@ -11,9 +11,8 @@ Future<File> getImage() async {
 //calculate age method
 String formatAge(String date) {
   final yearsNow = DateTime.now().year;
-  final yearsAgo = int.parse(date);
+  final yearsAgo = int.parse(date.split('-').last);
 
   final age = yearsNow - yearsAgo;
-  print('umur $age tahun');
   return age.toString();
 }
