@@ -26,7 +26,9 @@ class Wrapper extends StatelessWidget {
               ? SignInScreen()
               : (screenState is OnRegistrationScreen)
                   ? SignUpScreen(screenState.registrationData)
-                  : MainScreen(),
+                  : (screenState is OnAccountConfirmationScreen)
+                      ? AccountConfirmationScreen(screenState.registrationData)
+                      : MainScreen(),
     );
   }
 }

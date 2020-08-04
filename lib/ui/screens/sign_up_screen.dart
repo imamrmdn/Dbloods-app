@@ -69,6 +69,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     emailController.text = widget.registrationData.email;
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
+    //namaController.text = widget.registrationData.nama;
+    //tanggalLahirController.text = widget.registrationData.tanggalLahir;
+    return;
   }
 
   @override
@@ -250,7 +253,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             backgroundColor: whiteColor,
                             onSelected: (selected) {
                               setState(() {
-                                _defaultChoiceIndex = selected ? index : null;
+                                _defaultChoiceIndex = index;
                               });
                             },
                           ),
@@ -276,7 +279,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               sizedBoxDefault,
               TextInputField(
                 obscureText: !_showConfirmPassword,
-                controller: passwordController,
+                controller: confirmPasswordController,
                 cursorColor: mainColor,
                 textInputType: TextInputType.text,
                 hintText: 'Confirm Password',
@@ -295,6 +298,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               RaisedButton(
                 child: Text('print debug'),
                 onPressed: () {
+                  print(pekerjaan[_defaultChoiceIndex]);
                   if (!(namaController.text.trim() != '' &&
                       emailController.text.trim() != '' &&
                       tempatLahirController.text.trim() != '' &&
@@ -378,9 +382,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     )..show(context);
                   } else {
                     Flushbar(
-                      duration: Duration(seconds: 2),
+                      duration: Duration(seconds: 10),
                       messageText: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
+                          Text(
+                            pekerjaan[_defaultChoiceIndex],
+                            style: blackTextFont,
+                          ),
                           Text('${namaController.text}', style: blackTextFont),
                           Text('$_currentGolDarah', style: blackTextFont),
                           Text('${emailController.text}', style: blackTextFont),
@@ -389,13 +398,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           Text('${tanggalLahirController.text}',
                               style: blackTextFont),
                           Text('$jenkelVal', style: blackTextFont),
-                          Text('$_defaultChoiceIndex', style: blackTextFont),
                         ],
                       ),
                       backgroundColor: Colors.green,
                       flushbarPosition: FlushbarPosition.TOP,
                       leftBarIndicatorColor: Colors.teal,
                     )..show(context);
+
+                    context.bloc<ScreenBloc>().add(
+                        GoToAccountConfirmationScreen(widget.registrationData));
                   }
                 },
               )

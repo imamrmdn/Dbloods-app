@@ -23,28 +23,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
         GestureDetector(
           onTap: () {
             return showDialog(
-                context: context,
-                builder: (context) => AlertDialog(
-                      shape:
-                          RoundedRectangleBorder(borderRadius: borderRadius10),
-                      title: Text('Apakah anda yaking ingin SignOut?'),
-                      content: Text('ya saya yakin ingin SignOut.'),
-                      actions: <Widget>[
-                        FlatButton(
-                          onPressed: () {
-                            Navigator.of(context).pop();
-                          },
-                          child: Text('cancel'),
-                        ),
-                        FlatButton(
-                          onPressed: () {
-                            context.bloc<UserBloc>().add(SignOut());
-                            AuthServices.signOut();
-                          },
-                          child: Text('Yes'),
-                        )
-                      ],
-                    ));
+              context: context,
+              builder: (context) => ShowDialogSignOut(
+                onPressed1: () {
+                  Navigator.of(context).pop();
+                },
+                onPressed2: () {
+                  Navigator.of(context).pop();
+                  context.bloc<UserBloc>().add(SignOut());
+                  AuthServices.signOut();
+                  Flushbar(
+                    duration: Duration(seconds: 1),
+                    flushbarPosition: FlushbarPosition.TOP,
+                    backgroundColor: Colors.green,
+                    icon: Icon(MdiIcons.check),
+                    leftBarIndicatorColor: mainColor,
+                    messageText: Text('Anda telah Sign Out dari Dbloods'),
+                  )..show(context);
+                },
+              ),
+            );
           },
           child: Container(
             margin: EdgeInsets.only(

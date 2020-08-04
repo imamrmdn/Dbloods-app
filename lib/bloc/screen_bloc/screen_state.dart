@@ -31,3 +31,11 @@ class OnRegistrationScreen extends ScreenState {
   @override
   List<Object> get props => [];
 }
+
+class OnAccountConfirmationScreen extends ScreenState {
+  final RegistrationData registrationData;
+
+  OnAccountConfirmationScreen(this.registrationData);
+  @override
+  List<Object> get props => [];
+}

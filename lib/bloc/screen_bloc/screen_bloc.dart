@@ -19,6 +19,8 @@ class ScreenBloc extends Bloc<ScreenEvent, ScreenState> {
       yield OnMainScreen();
     } else if (event is GoToRegistrationScreen) {
       yield OnRegistrationScreen(event.registrationData);
+    } else if (event is GoToAccountConfirmationScreen) {
+      yield OnAccountConfirmationScreen(event.registrationData);
     }
   }
 }

@@ -21,7 +21,7 @@ class InfoScreen extends StatelessWidget {
                   child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  Icon(MdiIcons.informationOutline),
+                  Icon(MdiIcons.viewList),
                   SizedBox(width: 10),
                   Text('Informasi', style: TextStyle(fontSize: 18)),
                 ],
@@ -30,7 +30,7 @@ class InfoScreen extends StatelessWidget {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(MdiIcons.viewList),
+                    Icon(MdiIcons.castEducation),
                     SizedBox(width: 10),
                     Text('Edukasi', style: TextStyle(fontSize: 18)),
                   ],
@@ -47,10 +47,13 @@ class InfoScreen extends StatelessWidget {
               color: whiteColor,
               child: SafeArea(
                 minimum: minimumMarginRightLeft,
-                child: ListView.builder(
-                  itemCount: text.length,
-                  itemBuilder: (_, i) => Text('Soon $i'),
+                child: Center(
+                  child: Text('Informasi'),
                 ),
+                // child: ListView.builder(
+                //   itemCount: text.length,
+                //   itemBuilder: (_, i) => Text('Soon $i'),
+                // ),
               ),
             ),
             Container(

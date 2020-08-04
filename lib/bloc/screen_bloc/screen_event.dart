@@ -27,3 +27,12 @@ class GoToRegistrationScreen extends ScreenEvent {
   @override
   List<Object> get props => [];
 }
+
+class GoToAccountConfirmationScreen extends ScreenEvent {
+  final RegistrationData registrationData;
+
+  GoToAccountConfirmationScreen(this.registrationData);
+
+  @override
+  List<Object> get props => [];
+}

@@ -25,3 +25,4 @@ part 'home_screen.dart';
 part 'info_screen.dart';
 part 'stok_screen.dart';
 part 'profile_screen.dart';
+part 'accountConfirmation_screen.dart';
