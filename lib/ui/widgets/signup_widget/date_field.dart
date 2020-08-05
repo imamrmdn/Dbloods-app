@@ -23,12 +23,12 @@ class DateFieldSignUp extends StatelessWidget {
         hintStyle: blackTextFont,
       ),
       format: format,
-      onShowPicker: (context, currentValue) {
-        return showDatePicker(
+      onShowPicker: (context, currentValue) async {
+        return await showDatePicker(
           context: context,
           firstDate: DateTime(1900),
           initialDate: currentValue ?? DateTime.now(),
-          lastDate: DateTime(2100),
+          lastDate: DateTime.now(),
         );
       },
     );

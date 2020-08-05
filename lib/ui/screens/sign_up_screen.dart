@@ -66,12 +66,21 @@ class _SignUpScreenState extends State<SignUpScreen> {
   @override
   void initState() {
     super.initState();
-
-    emailController.text = widget.registrationData.email;
+    namaController.text = widget.registrationData.nama.trim();
+    tempatLahirController.text = widget.registrationData.tempatLahir.trim();
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
-    //namaController.text = widget.registrationData.nama;
-    //tanggalLahirController.text = widget.registrationData.tanggalLahir;
-    return;
+    // if (_currentGolDarah == null) {
+    //   print(_currentGolDarah);
+    // } else {
+    //   _currentGolDarah = widget.registrationData.golDarah.trim();
+    // }
+
+    // if (pekerjaan[_defaultChoiceIndex] == null) {
+    //   print(pekerjaan[_defaultChoiceIndex]);
+    // } else {
+    //   pekerjaan[_defaultChoiceIndex] = widget.registrationData.pekerjaan;
+    // }
+    // pekerjaan[_defaultChoiceIndex] = widget.registrationData.pekerjaan;
   }
 
   @override
@@ -122,7 +131,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     if (widget.registrationData.profilePicture == null) {
                       Flushbar(
                         duration: Duration(seconds: 2),
-                        messageText: Text('Gagal Menambah Profile Picture!',
+                        icon: Icon(Icons.info_outline),
+                        messageText: Text(
+                            'Anda Belum Menambahkan Profile Picture!',
                             style: blackTextFont),
                         backgroundColor: Colors.yellowAccent,
                         flushbarPosition: FlushbarPosition.TOP,
@@ -180,7 +191,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 controller: emailController,
                 obscureText: false,
                 cursorColor: mainColor,
-                hintText: 'Email',
+                hintText: 'Email Aktif Anda',
                 textInputType: TextInputType.emailAddress,
               ),
               sizedBoxDefault,
@@ -236,28 +247,29 @@ class _SignUpScreenState extends State<SignUpScreen> {
               //
               Wrap(
                 children: List<Widget>.generate(
-                    pekerjaan.length,
-                    (index) => Container(
-                          margin: EdgeInsets.symmetric(horizontal: 5),
-                          child: ChoiceChip(
-                            selected: _defaultChoiceIndex == index,
-                            selectedColor: mainColor,
-                            label: Text(
-                              pekerjaan[index],
-                              style: blackTextFont,
-                            ),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: borderRadius5,
-                              side: BorderSide(width: 1, color: greyColor),
-                            ),
-                            backgroundColor: whiteColor,
-                            onSelected: (selected) {
-                              setState(() {
-                                _defaultChoiceIndex = index;
-                              });
-                            },
-                          ),
-                        )).toList(),
+                  pekerjaan.length,
+                  (index) => Container(
+                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    child: ChoiceChip(
+                      selected: _defaultChoiceIndex == index,
+                      selectedColor: mainColor,
+                      label: Text(
+                        pekerjaan[index],
+                        style: blackTextFont,
+                      ),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: borderRadius5,
+                        side: BorderSide(width: 1, color: greyColor),
+                      ),
+                      backgroundColor: whiteColor,
+                      onSelected: (selected) {
+                        setState(() {
+                          _defaultChoiceIndex = index;
+                        });
+                      },
+                    ),
+                  ),
+                ).toList(),
               ),
 
               TextInputField(
@@ -295,120 +307,123 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
               ),
               sizedBoxDefault,
-              RaisedButton(
-                child: Text('print debug'),
-                onPressed: () {
-                  print(pekerjaan[_defaultChoiceIndex]);
-                  if (!(namaController.text.trim() != '' &&
-                      emailController.text.trim() != '' &&
-                      tempatLahirController.text.trim() != '' &&
-                      tanggalLahirController.text.trim() != '' &&
-                      passwordController.text.trim() != '' &&
-                      confirmPasswordController.text.trim() != '')) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text('Silahkan isi semua field.',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (!EmailValidator.validate(emailController.text)) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text('Format email salah anda salah!',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (_currentGolDarah == null) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text('Golongan Darah belum diisi',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (!(tempatLahirController.text.length <= 15)) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text(
-                          'Tempat Lahir tidak boleh lebih dari 15 kata.',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (!(jenkelVal != null &&
-                      _defaultChoiceIndex != null)) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text(
-                          'Jenis kelamin dan pekerjaan harus diisi',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (passwordController.text !=
-                      confirmPasswordController.text) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text(
-                          'Password tidak sama dengan Confirm password',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else if (passwordController.text.length < 6) {
-                    Flushbar(
-                      duration: Duration(seconds: 2),
-                      messageText: Text(
-                          'Password minimal 6 karakter atau lebih',
-                          style: blackTextFont),
-                      backgroundColor: Colors.yellow,
-                      icon: Icon(Icons.info_outline),
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
-                  } else {
-                    Flushbar(
-                      duration: Duration(seconds: 10),
-                      messageText: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: <Widget>[
-                          Text(
-                            pekerjaan[_defaultChoiceIndex],
-                            style: blackTextFont,
-                          ),
-                          Text('${namaController.text}', style: blackTextFont),
-                          Text('$_currentGolDarah', style: blackTextFont),
-                          Text('${emailController.text}', style: blackTextFont),
-                          Text('${tempatLahirController.text}',
-                              style: blackTextFont),
-                          Text('${tanggalLahirController.text}',
-                              style: blackTextFont),
-                          Text('$jenkelVal', style: blackTextFont),
-                        ],
-                      ),
-                      backgroundColor: Colors.green,
-                      flushbarPosition: FlushbarPosition.TOP,
-                      leftBarIndicatorColor: Colors.teal,
-                    )..show(context);
+              Container(
+                height: 50.0,
+                child: RaisedButton(
+                  color: mainColor,
+                  splashColor: Colors.teal,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: borderRadius8,
+                  ),
+                  child: Text('Next',
+                      style:
+                          whiteTextFont.copyWith(fontWeight: FontWeight.bold)),
+                  onPressed: () {
+                    // print(pekerjaan[_defaultChoiceIndex]);
+                    if (!(namaController.text.trim() != '' &&
+                        emailController.text.trim() != '' &&
+                        tempatLahirController.text.trim() != '' &&
+                        tanggalLahirController.text.trim() != '' &&
+                        passwordController.text.trim() != '' &&
+                        confirmPasswordController.text.trim() != '')) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text('Silahkan isi semua field.',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (!EmailValidator.validate(emailController.text)) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text('Format email salah anda salah!',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (_currentGolDarah == null) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text('Golongan Darah belum diisi',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (!(tempatLahirController.text.length <= 15)) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text(
+                            'Tempat Lahir tidak boleh lebih dari 15 kata.',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (!(jenkelVal != null &&
+                        _defaultChoiceIndex != null)) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text(
+                            'Jenis kelamin dan pekerjaan harus diisi',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (passwordController.text !=
+                        confirmPasswordController.text) {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text(
+                            'Password tidak sama dengan Confirm password',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else if (passwordController.text.length < 6 ||
+                        passwordController.text == '123456') {
+                      Flushbar(
+                        duration: Duration(seconds: 2),
+                        messageText: Text(
+                            'Password minimal 6 karakter atau lebih \ndan tidak boleh 123456',
+                            style: blackTextFont),
+                        backgroundColor: Colors.yellow,
+                        icon: Icon(Icons.info_outline),
+                        flushbarPosition: FlushbarPosition.TOP,
+                        leftBarIndicatorColor: Colors.teal,
+                      )..show(context);
+                    } else {
+                      //
+                      widget.registrationData.nama = namaController.text;
+                      widget.registrationData.golDarah = _currentGolDarah;
+                      widget.registrationData.email = emailController.text;
+                      widget.registrationData.tempatLahir =
+                          tempatLahirController.text;
+                      widget.registrationData.tanggalLahir =
+                          tanggalLahirController.text;
+                      widget.registrationData.jenkel = jenkelVal;
+                      widget.registrationData.pekerjaan =
+                          pekerjaan[_defaultChoiceIndex];
+                      widget.registrationData.password =
+                          passwordController.text;
 
-                    context.bloc<ScreenBloc>().add(
-                        GoToAccountConfirmationScreen(widget.registrationData));
-                  }
-                },
+                      //
+                      context.bloc<ScreenBloc>().add(
+                          GoToAccountConfirmationScreen(
+                              widget.registrationData));
+                    }
+                  },
+                ),
               )
               //
             ],

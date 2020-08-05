@@ -6,7 +6,7 @@ class SizeConfig {
   static double defaultWidth;
   static double defaultHeight;
 
-  void init(BuildContext context) {
+  init(BuildContext context) {
     mediaQueryData = MediaQuery.of(context);
     defaultMargin = mediaQueryData.size.width / 20;
     defaultWidth = mediaQueryData.size.width;

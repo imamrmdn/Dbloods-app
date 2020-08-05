@@ -9,6 +9,7 @@ class RegistrationData {
   File profilePicture;
   String tanggalLahir;
   String tempatLahir;
+  String password;
 
   RegistrationData({
     this.nama = ' ',
@@ -19,5 +20,6 @@ class RegistrationData {
     this.profilePicture,
     this.tanggalLahir,
     this.tempatLahir = ' ',
+    this.password = '',
   });
 }

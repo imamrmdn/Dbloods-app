@@ -21,3 +21,7 @@ part 'signup_widget/add_profile_picture.dart';
 part 'signup_widget/golDarah_field.dart';
 part 'signup_widget/date_field.dart';
 part 'profilescreen_widget/showdialog_signout.dart';
+part 'profilescreen_widget/signout_widget.dart';
+part 'profilescreen_widget/potoprofile_widget.dart';
+part 'profilescreen_widget/nama_goldarah.dart';
+part 'profilescreen_widget/email_tglLahir.dart';

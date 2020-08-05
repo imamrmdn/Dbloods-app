@@ -13,6 +13,7 @@ BorderRadius borderRadius10 = BorderRadius.circular(10);
 BorderRadius borderRadius5 = BorderRadius.circular(5);
 
 EdgeInsets minimumMarginRightLeft = EdgeInsets.only(right: 20.0, left: 20.0);
+EdgeInsets minimumMarginRightLeft2 = EdgeInsets.only(right: 40.0, left: 40.0);
 
 //text font
 TextStyle blackTextFont = GoogleFonts.raleway()
@@ -31,6 +32,18 @@ TextStyle redTextFont = GoogleFonts.raleway()
     .copyWith(color: mainColor, fontWeight: FontWeight.w500);
 TextStyle greyTextFont = GoogleFonts.raleway()
     .copyWith(color: greyColor, fontWeight: FontWeight.w500);
+
+//text font 2
+TextStyle blackTextFontt = GoogleFonts.poppins(
+  color: blackColor,
+  fontWeight: FontWeight.bold,
+  fontSize: 16,
+);
+TextStyle blackTextFontt2 = GoogleFonts.poppins(
+  color: blackColor,
+  fontWeight: FontWeight.w500,
+  fontSize: 16,
+);
 
 //number font
 TextStyle blackNumberFont = GoogleFonts.oswald()
