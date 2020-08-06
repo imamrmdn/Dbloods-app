@@ -16,6 +16,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController confirmPasswordController = TextEditingController();
   Widget sizedBoxDefault = SizedBox(height: SizeConfig.defaultWidth / 24);
+  Widget sizedBoxDefault2 = SizedBox(height: SizeConfig.sizeHeight2 * 1);
   final List<String> golDarah = [
     'tidak tahu',
     'A +',
@@ -102,9 +103,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
             child: Icon(Icons.arrow_back, color: whiteColor),
           ),
           title: Text('Silahkan isi data untuk Sign Up', style: whiteTextFont),
+          backgroundColor: mainColor,
         ),
         body: SafeArea(
-          minimum: minimumMarginRightLeft,
+          minimum: minimumMarginRightLeft4,
           child: ListView(
             children: <Widget>[
               //
@@ -154,13 +156,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   setState(() {});
                 },
               ),
-              SizedBox(height: 10.0),
+              sizedBoxDefault2,
               //
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.7,
+                    width: SizeConfig.defaultWidth / 1.7,
                     child: TextInputField(
                       controller: namaController,
                       obscureText: false,
@@ -170,7 +172,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width / 4.4,
+                    width: SizeConfig.defaultWidth / 4.4,
                     child: DropdownButtonFormField(
                       value: _currentGolDarah,
                       onChanged: (val) =>
@@ -230,7 +232,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     activeColor: mainColor,
                   ),
                   Text('Laki - Laki'),
-                  SizedBox(width: 30.0),
+                  SizedBox(width: SizeConfig.sizeWidth2 * 3),
                   //
                   Radio(
                     value: 2,
@@ -249,7 +251,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 children: List<Widget>.generate(
                   pekerjaan.length,
                   (index) => Container(
-                    margin: EdgeInsets.symmetric(horizontal: 5),
+                    margin: EdgeInsets.symmetric(
+                        horizontal: SizeConfig.sizeWidth2 * 1),
                     child: ChoiceChip(
                       selected: _defaultChoiceIndex == index,
                       selectedColor: mainColor,
@@ -308,7 +311,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               sizedBoxDefault,
               Container(
-                height: 50.0,
+                height: SizeConfig.sizeHeight2 * 6, //50
                 child: RaisedButton(
                   color: mainColor,
                   splashColor: Colors.teal,
@@ -333,7 +336,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         backgroundColor: Colors.yellow,
                         icon: Icon(Icons.info_outline),
                         flushbarPosition: FlushbarPosition.TOP,
-                        leftBarIndicatorColor: Colors.teal,
                       )..show(context);
                     } else if (!EmailValidator.validate(emailController.text)) {
                       Flushbar(

@@ -11,14 +11,14 @@ class AddProfilePicture extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Container(
-        margin: EdgeInsets.only(top: 20.0),
-        width: 90.0,
-        height: 104,
+        margin: EdgeInsets.only(top: SizeConfig.sizeHeight2 * 2), //20
+        width: SizeConfig.sizeHeight2 * 10,
+        height: SizeConfig.sizeHeight2 * 11.5,
         child: Stack(
           children: <Widget>[
             Container(
-              height: 90.0,
-              width: 90.0,
+              height: SizeConfig.sizeHeight2 * 10, //90
+              width: SizeConfig.sizeHeight2 * 10, //90
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 border: Border.all(color: mainColor, width: 1),
@@ -33,8 +33,8 @@ class AddProfilePicture extends StatelessWidget {
               child: GestureDetector(
                 onTap: onTap,
                 child: Container(
-                  height: 28.0,
-                  width: 28.0,
+                  height: SizeConfig.sizeHeight2 * 3, //28
+                  width: SizeConfig.sizeHeight2 * 3, //28
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     image: DecorationImage(

@@ -27,8 +27,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   minimum: minimumMarginRightLeft2,
                   child: Container(
                     margin: EdgeInsets.only(
-                      top: SizeConfig.defaultHeight / 10 * 2.5, //250
-                      bottom: SizeConfig.defaultHeight / 10, //100
+                      top: SizeConfig.sizeHeight * 2.5, //250
+                      bottom: SizeConfig.sizeHeight, //100
                     ),
                     width: SizeConfig.defaultWidth,
                     height: SizeConfig.defaultHeight,

@@ -12,8 +12,13 @@ BorderRadius borderRadius8 = BorderRadius.circular(8);
 BorderRadius borderRadius10 = BorderRadius.circular(10);
 BorderRadius borderRadius5 = BorderRadius.circular(5);
 
-EdgeInsets minimumMarginRightLeft = EdgeInsets.only(right: 20.0, left: 20.0);
+EdgeInsets minimumMarginRightLeft = EdgeInsets.only(
+    right: SizeConfig.sizeWidth2 * 0.2, left: SizeConfig.sizeWidth2 * 0.2); //20
 EdgeInsets minimumMarginRightLeft2 = EdgeInsets.only(right: 40.0, left: 40.0);
+EdgeInsets minimumMarginRightLeft3 = EdgeInsets.only(
+    left: SizeConfig.sizeWidth2 * 6, right: SizeConfig.sizeWidth2 * 6);
+EdgeInsets minimumMarginRightLeft4 = EdgeInsets.only(
+    left: SizeConfig.sizeWidth2 * 3, right: SizeConfig.sizeWidth2 * 3);
 
 //text font
 TextStyle blackTextFont = GoogleFonts.raleway()

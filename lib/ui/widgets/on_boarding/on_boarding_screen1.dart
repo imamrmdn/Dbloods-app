@@ -10,16 +10,16 @@ class OnBoardingScreenOne extends StatelessWidget {
         child: Stack(
           children: <Widget>[
             Positioned(
-              top: 100,
+              top: SizeConfig.sizeHeight2 * 10,
               left: SizeConfig.defaultWidth / 3.2,
               child: Container(
-                height: 250,
-                width: 200,
+                height: SizeConfig.sizeHeight * 2.5, //250
+                width: SizeConfig.sizeWidth * 4.1, //200
                 child: SvgPicture.asset('assets/logo.svg'),
               ),
             ),
             Positioned(
-              top: 400,
+              top: SizeConfig.defaultHeight / 2.35, //400
               left: SizeConfig.defaultWidth / 2.5,
               child: Text(
                 'Dbloods',
@@ -28,7 +28,7 @@ class OnBoardingScreenOne extends StatelessWidget {
               ),
             ),
             Positioned(
-              top: 460,
+              top: SizeConfig.defaultHeight / 2.04, //460
               left: SizeConfig.defaultWidth / 12,
               child: Text(
                 'Donor Darah jadi lebih mudah dengan\n Dbloods.',

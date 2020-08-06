@@ -6,16 +6,18 @@ class OnBoardingScreenTwo extends StatelessWidget {
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
-        minimum: minimumMarginRightLeft,
+        minimum: minimumMarginRightLeft4,
         child: Center(
           child: Column(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 79),
+                margin: EdgeInsets.only(
+                  top: SizeConfig.sizeHeight2 * 8,
+                ), //79
                 child: Image.asset('assets/onBoardingScreen2.png'),
               ),
               Container(
-                margin: EdgeInsets.only(top: 50),
+                margin: EdgeInsets.only(top: SizeConfig.sizeHeight2 * 5.5),
                 child: Text(
                   'Dbloods adalah aplikasi kesehatan\n yang membantu anda untuk\n mencari stok golongan darah di beberapa rumah sakit di Jakarta dan mengetahui info tentang donor darah.',
                   textAlign: TextAlign.center,
@@ -23,7 +25,9 @@ class OnBoardingScreenTwo extends StatelessWidget {
                 ),
               ),
               Button(
-                margin: EdgeInsets.only(top: 120.0, bottom: 20.0),
+                margin: EdgeInsets.only(
+                    top: SizeConfig.sizeHeight2 * 12,
+                    bottom: SizeConfig.sizeHeight2 * 2), //120,20
                 width: SizeConfig.defaultWidth / 1.4,
                 height: SizeConfig.defaultWidth / 8, //65
                 color: mainColor,

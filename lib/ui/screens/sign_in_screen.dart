@@ -14,6 +14,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
+    SizeTheme().init(context);
     context
         .bloc<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: whiteColor)));
@@ -26,21 +27,22 @@ class _SignInScreenState extends State<SignInScreen> {
       child: Scaffold(
         backgroundColor: mainColor,
         body: SafeArea(
-          minimum: EdgeInsets.only(left: 30.0, right: 30.0),
+          minimum: minimumMarginRightLeft3,
           child: ListView(
             children: <Widget>[
               Container(
-                margin: EdgeInsets.only(top: 30.0),
+                margin: EdgeInsets.only(top: SizeConfig.sizeHeight2 * 3), //30
                 child: SvgPicture.asset(
                   'assets/logo2.svg',
                   //fit: BoxFit.fill,
-                  height: 150.0,
-                  width: 90.0,
+                  height: SizeConfig.sizeHeight2 * 15, //150
+                  width: SizeTheme.sizeHorizontal * 90, //90
                 ),
               ),
               Center(
                 child: Container(
-                  margin: EdgeInsets.only(top: 20.0),
+                  margin:
+                      EdgeInsets.only(top: SizeTheme.sizekVertical * 2), //20
                   child: Text(
                     'Dbloods',
                     style: whiteTextFont.copyWith(
@@ -48,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ),
               ),
-              SizedBox(height: 80),
+              SizedBox(height: SizeTheme.sizekVertical * 8),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: <Widget>[
@@ -68,7 +70,7 @@ class _SignInScreenState extends State<SignInScreen> {
                       });
                     },
                   ),
-                  SizedBox(height: 25),
+                  SizedBox(height: SizeTheme.sizekVertical * 2.5),
                   Text(
                     'Password :',
                     style: blackTextFont.copyWith(fontSize: 18.0),
@@ -97,7 +99,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                 ],
               ),
-              SizedBox(height: 15),
+              SizedBox(height: SizeTheme.sizekVertical * 1.5),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
@@ -106,19 +108,21 @@ class _SignInScreenState extends State<SignInScreen> {
                 ],
               ),
               Button(
-                margin: EdgeInsets.only(top: 50.0, bottom: 20.0),
+                margin: EdgeInsets.only(
+                    top: SizeTheme.sizekVertical * 5,
+                    bottom: SizeTheme.sizekVertical * 2), //50,20
                 width: SizeConfig.defaultWidth / 1.4,
                 height: SizeConfig.defaultWidth / 8, //65
                 text: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Text(
-                      'Sign In',
-                      style: whiteTextFont.copyWith(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
-                    SizedBox(width: 5),
-                    isSignIn ? Loading(color: whiteColor) : Text('')
+                    isSignIn
+                        ? Loading(color: whiteColor)
+                        : Text(
+                            'Sign In',
+                            style: whiteTextFont.copyWith(
+                                fontSize: 16.0, fontWeight: FontWeight.bold),
+                          ),
                   ],
                 ),
                 onTap: isEmailValid && isPasswordValid
@@ -140,11 +144,14 @@ class _SignInScreenState extends State<SignInScreen> {
                           Flushbar(
                             duration: Duration(seconds: 3),
                             flushbarPosition: FlushbarPosition.TOP,
+                            borderRadius: 8,
+                            margin: EdgeInsets.all(8),
+                            padding: EdgeInsets.all(10),
                             backgroundColor: Colors.yellowAccent,
+                            icon: Icon(Icons.info_outline),
                             messageText: Text(result.message,
                                 style: blackTextFont.copyWith(
-                                    fontWeight: FontWeight.bold)),
-                            leftBarIndicatorColor: blackColor,
+                                    fontWeight: FontWeight.w600)),
                           )..show(context);
                         }
                       }
