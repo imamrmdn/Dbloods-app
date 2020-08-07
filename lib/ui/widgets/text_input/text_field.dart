@@ -9,6 +9,7 @@ class TextInputField extends StatelessWidget {
   final Widget suffixIcon;
   final Color cursorColor;
   final String labelText;
+  final Function validator;
 
   TextInputField({
     this.hintText,
@@ -19,17 +20,19 @@ class TextInputField extends StatelessWidget {
     this.suffixIcon,
     this.cursorColor,
     this.labelText,
+    this.validator,
   });
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
+    return TextFormField(
       style: blackTextFont,
       onChanged: onChanged,
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,
       cursorColor: cursorColor,
+      validator: validator,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,

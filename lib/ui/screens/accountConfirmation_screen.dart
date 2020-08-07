@@ -26,96 +26,119 @@ class _AccountConfirmationScreenState extends State<AccountConfirmationScreen> {
         body: Container(
           color: mainColor,
           child: SafeArea(
-            minimum: minimumMarginRightLeft,
             child: Container(
               width: SizeConfig.defaultWidth,
               color: whiteColor,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Center(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        //profilepicture
-                        Container(
-                          width: 60,
-                          height: 60,
-                          decoration: BoxDecoration(
-                            border: Border.all(width: 2, color: mainColor),
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              image: (widget.registrationData.profilePicture ==
-                                      null)
-                                  ? AssetImage('assets/user_profile.png')
-                                  : FileImage(
-                                      widget.registrationData.profilePicture),
-                              fit: BoxFit.cover,
+              child: SafeArea(
+                minimum: minimumMarginRightLeft4,
+                child: Column(
+                  children: <Widget>[
+                    Container(
+                      margin:
+                          EdgeInsets.only(top: SizeTheme.sizekVertical * 17),
+                      child: Image.asset(
+                        'assets/confirm_akun.png',
+                        height: SizeTheme.sizekVertical * 30,
+                        width: SizeTheme.sizeHorizontal * 200,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Text('Berhasil Membuat Akun Dbloodsmu Konfirm Sekarang!',
+                        style: blackTextFont.copyWith(
+                            fontWeight: FontWeight.bold, fontSize: 15)),
+                    // Row(
+                    //   mainAxisAlignment: MainAxisAlignment.center,
+                    //   children: <Widget>[
+                    //     //profilepicture
+                    //     Container(
+                    //       width: 60,
+                    //       height: 60,
+                    //       decoration: BoxDecoration(
+                    //         border: Border.all(width: 2, color: mainColor),
+                    //         shape: BoxShape.circle,
+                    //         image: DecorationImage(
+                    //           image: (widget.registrationData.profilePicture ==
+                    //                   null)
+                    //               ? AssetImage('assets/user_profile.png')
+                    //               : FileImage(
+                    //                   widget.registrationData.profilePicture),
+                    //           fit: BoxFit.cover,
+                    //         ),
+                    //       ),
+                    //     ),
+                    //     SizedBox(width: 20.0),
+                    //     Column(
+                    //       crossAxisAlignment: CrossAxisAlignment.start,
+                    //       mainAxisAlignment: MainAxisAlignment.center,
+                    //       children: <Widget>[
+                    //         Text(
+                    //           '${widget.registrationData.nama}',
+                    //           style: blackTextFont.copyWith(
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //         Text(
+                    //           '${widget.registrationData.email}',
+                    //           style: blackTextFont.copyWith(
+                    //             fontWeight: FontWeight.bold,
+                    //           ),
+                    //         ),
+                    //       ],
+                    //     ),
+                    //   ],
+                    // ),
+                    SizedBox(height: 30.0),
+                    isConfirm
+                        ? Loading(height: 50, width: 50, color: mainColor)
+                        : Container(
+                            width: SizeConfig.defaultWidth / 1.3,
+                            height: SizeTheme.sizekVertical * 6,
+                            child: RaisedButton(
+                              color: mainColor,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: borderRadius10,
+                              ),
+                              child: Text('Confirm',
+                                  style: whiteTextFont.copyWith(
+                                      fontWeight: FontWeight.bold)),
+                              onPressed: () async {
+                                setState(() {
+                                  isConfirm = true;
+                                });
+
+                                SignInSignUpResult result =
+                                    await AuthServices.signUp(
+                                  widget.registrationData.nama,
+                                  widget.registrationData.email,
+                                  widget.registrationData.golDarah,
+                                  widget.registrationData.tempatLahir,
+                                  widget.registrationData.tanggalLahir,
+                                  widget.registrationData.jenkel,
+                                  widget.registrationData.pekerjaan,
+                                  widget.registrationData.password,
+                                );
+
+                                if (result.user == null) {
+                                  setState(() {
+                                    isConfirm = false;
+                                  });
+                                  showBottomSheetEmailValidator(
+                                    context,
+                                    text: result.message,
+                                    onPressed: () {
+                                      Navigator.of(context).pop();
+                                      context.bloc<ScreenBloc>().add(
+                                            GoToRegistrationScreen(
+                                                widget.registrationData),
+                                          );
+                                    },
+                                  );
+                                }
+                              },
                             ),
                           ),
-                        ),
-                        SizedBox(width: 20.0),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Text(
-                              '${widget.registrationData.nama}',
-                              style: blackTextFont.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            Text(
-                              '${widget.registrationData.email}',
-                              style: blackTextFont.copyWith(
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(height: 30.0),
-                  isConfirm
-                      ? Loading(height: 50, width: 50, color: mainColor)
-                      : RaisedButton(
-                          child: Text('Confirm'),
-                          onPressed: () async {
-                            setState(() {
-                              isConfirm = true;
-                            });
-
-                            SignInSignUpResult result =
-                                await AuthServices.signUp(
-                              widget.registrationData.nama,
-                              widget.registrationData.email,
-                              widget.registrationData.golDarah,
-                              widget.registrationData.tempatLahir,
-                              widget.registrationData.tanggalLahir,
-                              widget.registrationData.jenkel,
-                              widget.registrationData.pekerjaan,
-                              widget.registrationData.password,
-                            );
-
-                            if (result.user == null) {
-                              setState(() {
-                                isConfirm = false;
-                              });
-                              showBottomSheetEmailValidator(
-                                context,
-                                onPressed: () {
-                                  Navigator.of(context).pop();
-                                  context.bloc<ScreenBloc>().add(
-                                        GoToRegistrationScreen(
-                                            widget.registrationData),
-                                      );
-                                },
-                              );
-                            }
-                          },
-                        ),
-                ],
+                  ],
+                ),
               ),
             ),
           ),

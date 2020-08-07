@@ -34,7 +34,7 @@ class AuthServices {
       return SignInSignUpResult(user: user);
     } catch (_) {
       return SignInSignUpResult(
-          message: 'Alamat email anda sudah digunakan oleh akun lain.');
+          message: 'Email yang anda masukan sudah digunakan oleh akun lain !');
     }
   }
 

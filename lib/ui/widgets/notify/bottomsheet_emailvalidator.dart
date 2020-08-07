@@ -1,8 +1,9 @@
 part of '../widgets.dart';
 
 //
+void showBottomSheetEmailValidator(context, {String text, Function onPressed}) {
+  SizeTheme().init(context);
 
-void showBottomSheetEmailValidator(context, {Function onPressed}) {
   showModalBottomSheet(
     context: context,
     backgroundColor: whiteColor,
@@ -15,14 +16,16 @@ void showBottomSheetEmailValidator(context, {Function onPressed}) {
     builder: (BuildContext context) => Container(
       height: SizeTheme.sizekVertical * 40,
       child: Padding(
-        padding: const EdgeInsets.fromLTRB(8.0, 8.0, 8.0, 50.0),
+        padding:
+            EdgeInsets.fromLTRB(8.0, 8.0, 8.0, SizeTheme.sizekVertical * 5),
         child: Stack(
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 IconButton(
-                  icon: Icon(Icons.cancel, color: mainColor, size: 30),
+                  icon: Icon(Icons.cancel,
+                      color: mainColor, size: SizeTheme.sizekVertical * 3),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
@@ -32,9 +35,9 @@ void showBottomSheetEmailValidator(context, {Function onPressed}) {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 60.0),
-                height: 200,
-                width: 200,
+                margin: EdgeInsets.only(top: SizeTheme.sizekVertical * 7),
+                height: SizeTheme.sizekVertical * 20,
+                width: SizeTheme.sizeHorizontal * 50,
                 decoration: BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage('assets/notify_email.png'),
@@ -46,9 +49,8 @@ void showBottomSheetEmailValidator(context, {Function onPressed}) {
             Align(
               alignment: Alignment.topCenter,
               child: Container(
-                margin: EdgeInsets.only(top: 50.0),
-                child: Text(
-                    'Email yang anda masukan sudah digunakan oleh akun lain !',
+                margin: EdgeInsets.only(top: SizeTheme.sizekVertical * 5),
+                child: Text(text,
                     style: blackTextFont.copyWith(fontWeight: FontWeight.bold)),
               ),
             ),

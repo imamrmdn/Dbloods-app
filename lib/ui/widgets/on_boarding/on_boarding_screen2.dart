@@ -17,7 +17,7 @@ class OnBoardingScreenTwo extends StatelessWidget {
                 child: Image.asset('assets/onBoardingScreen2.png'),
               ),
               Container(
-                margin: EdgeInsets.only(top: SizeConfig.sizeHeight2 * 5.5),
+                margin: EdgeInsets.only(top: SizeConfig.sizeHeight2 * 5.4),
                 child: Text(
                   'Dbloods adalah aplikasi kesehatan\n yang membantu anda untuk\n mencari stok golongan darah di beberapa rumah sakit di Jakarta dan mengetahui info tentang donor darah.',
                   textAlign: TextAlign.center,
