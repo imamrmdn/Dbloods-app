@@ -51,9 +51,7 @@ class AuthServices {
 
       return SignInSignUpResult(user: user);
     } catch (_) {
-      return SignInSignUpResult(
-          message:
-              'Email Atau Password anda salah !\nSilahkan masukkan dengan benar.');
+      return SignInSignUpResult(message: 'Email Atau Password anda salah');
     }
   }
 

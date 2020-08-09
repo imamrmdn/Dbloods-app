@@ -34,8 +34,9 @@ class _AccountConfirmationScreenState extends State<AccountConfirmationScreen> {
                 child: Column(
                   children: <Widget>[
                     Container(
-                      margin:
-                          EdgeInsets.only(top: SizeTheme.sizekVertical * 17),
+                      margin: EdgeInsets.only(
+                          top: SizeTheme.sizekVertical * 15,
+                          bottom: SizeTheme.sizekVertical * 2),
                       child: Image.asset(
                         'assets/confirm_akun.png',
                         height: SizeTheme.sizekVertical * 30,
@@ -46,47 +47,6 @@ class _AccountConfirmationScreenState extends State<AccountConfirmationScreen> {
                     Text('Berhasil Membuat Akun Dbloodsmu Konfirm Sekarang!',
                         style: blackTextFont.copyWith(
                             fontWeight: FontWeight.bold, fontSize: 15)),
-                    // Row(
-                    //   mainAxisAlignment: MainAxisAlignment.center,
-                    //   children: <Widget>[
-                    //     //profilepicture
-                    //     Container(
-                    //       width: 60,
-                    //       height: 60,
-                    //       decoration: BoxDecoration(
-                    //         border: Border.all(width: 2, color: mainColor),
-                    //         shape: BoxShape.circle,
-                    //         image: DecorationImage(
-                    //           image: (widget.registrationData.profilePicture ==
-                    //                   null)
-                    //               ? AssetImage('assets/user_profile.png')
-                    //               : FileImage(
-                    //                   widget.registrationData.profilePicture),
-                    //           fit: BoxFit.cover,
-                    //         ),
-                    //       ),
-                    //     ),
-                    //     SizedBox(width: 20.0),
-                    //     Column(
-                    //       crossAxisAlignment: CrossAxisAlignment.start,
-                    //       mainAxisAlignment: MainAxisAlignment.center,
-                    //       children: <Widget>[
-                    //         Text(
-                    //           '${widget.registrationData.nama}',
-                    //           style: blackTextFont.copyWith(
-                    //             fontWeight: FontWeight.bold,
-                    //           ),
-                    //         ),
-                    //         Text(
-                    //           '${widget.registrationData.email}',
-                    //           style: blackTextFont.copyWith(
-                    //             fontWeight: FontWeight.bold,
-                    //           ),
-                    //         ),
-                    //       ],
-                    //     ),
-                    //   ],
-                    // ),
                     SizedBox(height: 30.0),
                     isConfirm
                         ? Loading(height: 50, width: 50, color: mainColor)

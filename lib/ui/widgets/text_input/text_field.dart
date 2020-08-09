@@ -10,6 +10,7 @@ class TextInputField extends StatelessWidget {
   final Color cursorColor;
   final String labelText;
   final Function validator;
+  final List<TextInputFormatter> inputFormatters;
 
   TextInputField({
     this.hintText,
@@ -21,6 +22,7 @@ class TextInputField extends StatelessWidget {
     this.cursorColor,
     this.labelText,
     this.validator,
+    this.inputFormatters,
   });
 
   @override
@@ -33,6 +35,7 @@ class TextInputField extends StatelessWidget {
       keyboardType: textInputType,
       cursorColor: cursorColor,
       validator: validator,
+      inputFormatters: inputFormatters,
       decoration: InputDecoration(
         suffixIcon: suffixIcon,
         hintText: hintText,

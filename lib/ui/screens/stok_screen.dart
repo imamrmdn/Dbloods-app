@@ -7,6 +7,7 @@ class StokScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    SizeTheme().init(context);
     return Stack(
       children: <Widget>[
         Container(
@@ -53,7 +54,7 @@ class StokScreen extends StatelessWidget {
           ),
         ),
         Container(
-          margin: EdgeInsets.only(top: 220),
+          margin: EdgeInsets.only(top: SizeTheme.sizekVertical * 17),
           child: ListView(
             children: <Widget>[
               SizedBox(height: 200),

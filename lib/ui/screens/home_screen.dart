@@ -4,6 +4,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     bool isLoading = false;
+    SizeTheme().init(context);
     return Stack(
       children: <Widget>[
         Container(
@@ -90,7 +91,7 @@ class HomeScreen extends StatelessWidget {
           child: SafeArea(
             minimum: EdgeInsets.symmetric(horizontal: 12),
             child: Container(
-              margin: EdgeInsets.only(top: 85, bottom: 80),
+              margin: EdgeInsets.only(top: 50, bottom: 80),
               child: isLoading
                   ? Loading()
                   : ListView(
@@ -139,13 +140,12 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ),
-        Container(
-          margin: EdgeInsets.only(top: 180, left: 12, right: 12),
-          width: MediaQuery.of(context).size.width,
-          height: 3,
-          decoration: BoxDecoration(
-              color: Colors.black12, borderRadius: BorderRadius.circular(5)),
-        ),
+        LineDash2(
+            margin: EdgeInsets.only(
+          top: SizeTheme.sizekVertical * 19,
+          left: SizeTheme.sizeHorizontal * 3, //12
+          right: SizeTheme.sizeHorizontal * 3, //12
+        ))
       ],
     );
   }

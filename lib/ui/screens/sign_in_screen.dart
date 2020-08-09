@@ -6,12 +6,13 @@ class SignInScreen extends StatefulWidget {
 }
 
 class _SignInScreenState extends State<SignInScreen> {
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool isSignIn = false;
   bool isEmailValid = false;
   bool isPasswordValid = false;
   bool _showPassword = false;
-  TextEditingController emailController = TextEditingController();
-  TextEditingController passwordController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     SizeTheme().init(context);
@@ -141,18 +142,9 @@ class _SignInScreenState extends State<SignInScreen> {
                             isSignIn = false;
                           });
                           //
-                          Flushbar(
-                            duration: Duration(seconds: 3),
-                            flushbarPosition: FlushbarPosition.TOP,
-                            borderRadius: 8,
-                            margin: EdgeInsets.all(8),
-                            padding: EdgeInsets.all(10),
-                            backgroundColor: Colors.yellowAccent,
-                            icon: Icon(Icons.info_outline),
-                            messageText: Text(result.message,
-                                style: blackTextFont.copyWith(
-                                    fontWeight: FontWeight.w600)),
-                          )..show(context);
+                          showFlushbarCustom(context,
+                              title: result.message,
+                              text: 'silahkan masukan dengan benar');
                         }
                       }
                     : null,

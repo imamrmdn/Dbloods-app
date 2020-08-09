@@ -18,14 +18,31 @@ String formatAge(String date) {
 }
 
 //
-String validatePassword(String value) {
-  Pattern pattern =
-      r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-  RegExp regex = RegExp(pattern);
-  if (!regex.hasMatch(value))
-    return 'Enter Valid Email';
-  else
-    return null;
+// String validatePassword(String value) {
+//   Pattern pattern =
+//       ...;
+//   RegExp regex = RegExp(pattern);
+//   if (!regex.hasMatch(value))
+//     return 'Enter Valid Email';
+//   else
+//     return null;
+// }
+
+//
+extension StringExtension on String {
+  capitalize() {
+    return '${this[0].toUpperCase()}${this.substring(1)}';
+  }
 }
 
 //
+class UpperCaseTextFormatter extends TextInputFormatter {
+  @override
+  TextEditingValue formatEditUpdate(
+      TextEditingValue oldValue, TextEditingValue newValue) {
+    return TextEditingValue(
+      text: newValue.text?.toUpperCase(),
+      selection: newValue.selection,
+    );
+  }
+}

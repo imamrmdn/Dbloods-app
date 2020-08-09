@@ -1,8 +1,11 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
+import 'package:dbloods_app/bloc/blocs.dart';
 import 'package:dbloods_app/bloc/screen_bloc/screen_bloc.dart';
 import 'package:dbloods_app/bloc/theme_bloc/theme_bloc.dart';
 import 'package:dbloods_app/models/models.dart';
+import 'package:dbloods_app/services/services.dart';
 import 'package:flushbar/flushbar.dart';
+import 'package:flutter/services.dart';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:dbloods_app/shared/shareds.dart';
@@ -23,8 +26,9 @@ part 'signup_widget/add_profile_picture.dart';
 part 'signup_widget/date_field.dart';
 part 'profilescreen_widget/showdialog_signout.dart';
 part 'profilescreen_widget/signout_widget.dart';
-part 'profilescreen_widget/potoprofile_widget.dart';
 part 'profilescreen_widget/nama_goldarah.dart';
 part 'profilescreen_widget/email_tglLahir.dart';
+part 'profilescreen_widget/profile_identity.dart';
+part 'profilescreen_widget/line_dash.dart';
 part 'notify/bottomsheet_emailvalidator.dart';
 part 'notify/flushbar.dart';

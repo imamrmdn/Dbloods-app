@@ -15,17 +15,21 @@ void showFlushBar(context,
 }
 
 //
-void showFlushbarCustom(context, {String text, String title}) {
+void showFlushbarCustom(context,
+    {String text,
+    String title,
+    Color color = Colors.yellow,
+    Widget icon = const Icon(Icons.info_outline)}) {
   Flushbar(
     duration: Duration(seconds: 2),
-    icon: Icon(Icons.info_outline),
+    icon: icon,
     margin: EdgeInsets.all(8),
     padding: EdgeInsets.all(10),
     borderRadius: 8.0,
     titleText:
         Text(title, style: blackTextFont.copyWith(fontWeight: FontWeight.bold)),
     messageText: Text(text, style: blackTextFont),
-    backgroundColor: Colors.yellow,
+    backgroundColor: color,
     flushbarPosition: FlushbarPosition.TOP,
   )..show(context);
 }

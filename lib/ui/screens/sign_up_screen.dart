@@ -82,6 +82,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   Widget build(BuildContext context) {
+    SizeTheme().init(context);
     context
         .bloc<ThemeBloc>()
         .add(ChangeTheme(ThemeData().copyWith(primaryColor: mainColor)));
@@ -188,6 +189,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       cursorColor: mainColor,
                       hintText: 'Tempat Lahir',
                       textInputType: TextInputType.text,
+                      inputFormatters: [
+                        UpperCaseTextFormatter(),
+                      ],
                     ),
                   ),
                   Container(
@@ -200,7 +204,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
               ),
               sizedBoxDefault,
               Text('Jenis Kelamin', style: blackTextFont),
-              //Radio button
+
               Row(
                 children: <Widget>[
                   //
@@ -260,7 +264,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 cursorColor: mainColor,
                 textInputType: TextInputType.text,
                 hintText: 'Password',
-                validator: validatePassword,
+                //validator: validatePassword,
                 suffixIcon: GestureDetector(
                     onTap: () {
                       setState(() {
@@ -336,8 +340,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         GoToAccountConfirmationScreen(widget.registrationData));
                   }
                 },
-              )
+              ),
               //
+              SizedBox(height: 50.0),
             ],
           ),
         ),
