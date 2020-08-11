@@ -3,6 +3,7 @@ part of '../widgets.dart';
 class OnBoardingScreenTwo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    SizeTheme().init(context);
     return Scaffold(
       backgroundColor: whiteColor,
       body: SafeArea(
@@ -34,7 +35,8 @@ class OnBoardingScreenTwo extends StatelessWidget {
                 text: Text(
                   'AYO, GUNAKAN DBLOODS SEKARANG !',
                   style: whiteTextFont3.copyWith(
-                      fontSize: 14.0, fontWeight: FontWeight.normal),
+                      fontSize: SizeTheme.sizeHorizontal * 3,
+                      fontWeight: FontWeight.normal),
                 ),
                 onTap: () {
                   context

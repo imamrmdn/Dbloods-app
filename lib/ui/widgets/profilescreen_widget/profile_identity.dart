@@ -63,7 +63,7 @@ class ProfileIdentity extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            LineDash2(),
+            Divider(color: greyColor),
             SizedBox(height: 20.0),
             //riwayat donor
             Row(
@@ -75,7 +75,7 @@ class ProfileIdentity extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            LineDash2(),
+            Divider(color: greyColor),
             SizedBox(height: 20.0),
             //tentang dbloods
             Row(
@@ -87,7 +87,7 @@ class ProfileIdentity extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            LineDash2(),
+            Divider(color: greyColor),
             SizedBox(height: 20.0),
             //Rate Dbloods App
             Row(
@@ -99,7 +99,7 @@ class ProfileIdentity extends StatelessWidget {
               ],
             ),
             SizedBox(height: 20.0),
-            LineDash2(),
+            Divider(color: greyColor),
             SizedBox(height: 20.0),
             SignOutWidget(
               onTap: () {
@@ -124,7 +124,7 @@ class ProfileIdentity extends StatelessWidget {
               },
             ),
             SizedBox(height: 20.0),
-            LineDash2(),
+            Divider(color: greyColor),
             SizedBox(height: 50.0),
           ],
         ),

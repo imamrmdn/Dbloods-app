@@ -99,7 +99,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
             },
             child: Icon(Icons.arrow_back, color: whiteColor),
           ),
-          title: Text('Silahkan isi data untuk Sign Up', style: whiteTextFont),
+          title: Text('Silahkan isi data untuk Sign Up',
+              style: whiteTextFont.copyWith(
+                  fontSize: SizeTheme.sizeHorizontal * 4)),
           backgroundColor: mainColor,
         ),
         body: SafeArea(
@@ -342,7 +344,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 },
               ),
               //
-              SizedBox(height: 50.0),
+              SizedBox(height: 20.0),
             ],
           ),
         ),
