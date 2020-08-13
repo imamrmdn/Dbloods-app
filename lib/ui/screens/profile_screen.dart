@@ -17,7 +17,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   nama: '${userState.user.nama}',
                   golDarah: 'Gol Darah ${userState.user.golDarah}',
                   email: '${userState.user.email}',
-                  umur: 'Umur ${formatAge(userState.user.tanggalLahir)} tahun',
+                  umur: (int.parse(formatAge(userState.user.tanggalLahir)) <=
+                          17)
+                      ? 'Belum Cukup Umur'
+                      : 'Umur ${formatAge(userState.user.tanggalLahir)} tahun',
                 )
               : Loading(
                   color: mainColor,

@@ -323,6 +323,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   } else if (passwordController.text.length < 6) {
                     showFlushBar(context,
                         text: 'Password minimal 6 karakter atau lebih');
+                  } else if (int.parse(
+                          formatAge(tanggalLahirController.text)) <=
+                      17) {
+                    showBottomSheetValidator(
+                      context,
+                      text1:
+                          'Umur Anda Belum Mencukupi Untuk Mengikuti Donor Darah ',
+                      text2: 'Kembali',
+                      onPressed: () {
+                        Navigator.of(context).pop();
+                        context.bloc<ScreenBloc>().add(GoToSignInScreen());
+                      },
+                    );
                   } else {
                     //
                     widget.registrationData.nama = namaController.text;

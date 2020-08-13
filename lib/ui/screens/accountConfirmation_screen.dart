@@ -82,9 +82,10 @@ class _AccountConfirmationScreenState extends State<AccountConfirmationScreen> {
                                   setState(() {
                                     isConfirm = false;
                                   });
-                                  showBottomSheetEmailValidator(
+                                  showBottomSheetValidator(
                                     context,
-                                    text: result.message,
+                                    text1: result.message,
+                                    text2: 'Kembali ke Sign Up',
                                     onPressed: () {
                                       Navigator.of(context).pop();
                                       context.bloc<ScreenBloc>().add(

@@ -50,10 +50,6 @@ class InfoScreen extends StatelessWidget {
                 child: Center(
                   child: Text('Informasi'),
                 ),
-                // child: ListView.builder(
-                //   itemCount: text.length,
-                //   itemBuilder: (_, i) => Text('Soon $i'),
-                // ),
               ),
             ),
             Container(

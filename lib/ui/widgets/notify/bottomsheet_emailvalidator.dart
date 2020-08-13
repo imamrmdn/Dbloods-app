@@ -1,7 +1,8 @@
 part of '../widgets.dart';
 
 //
-void showBottomSheetEmailValidator(context, {String text, Function onPressed}) {
+void showBottomSheetValidator(context,
+    {String text1, String text2, Function onPressed}) {
   SizeTheme().init(context);
 
   showModalBottomSheet(
@@ -50,7 +51,7 @@ void showBottomSheetEmailValidator(context, {String text, Function onPressed}) {
               alignment: Alignment.topCenter,
               child: Container(
                 margin: EdgeInsets.only(top: SizeTheme.sizekVertical * 5),
-                child: Text(text,
+                child: Text(text1,
                     style: blackTextFont.copyWith(fontWeight: FontWeight.bold)),
               ),
             ),
@@ -65,7 +66,7 @@ void showBottomSheetEmailValidator(context, {String text, Function onPressed}) {
                     borderRadius: borderRadius10,
                   ),
                   child: Text(
-                    'Kembali ke Sign Up',
+                    text2,
                     style: whiteTextFont.copyWith(fontWeight: FontWeight.bold),
                   ),
                   onPressed: onPressed,
