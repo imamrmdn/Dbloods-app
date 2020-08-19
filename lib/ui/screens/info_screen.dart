@@ -3,12 +3,6 @@ part of 'screens.dart';
 class InfoScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var text = [];
-
-    for (int i = 0; i <= 50; i++) {
-      text.add(i);
-    }
-
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -45,12 +39,14 @@ class InfoScreen extends StatelessWidget {
               width: SizeConfig.defaultWidth,
               height: SizeConfig.defaultHeight,
               color: whiteColor,
-              child: SafeArea(
-                minimum: minimumMarginRightLeft,
-                child: Center(
-                  child: Text('Informasi'),
-                ),
-              ),
+              padding: EdgeInsets.only(bottom: 80.0),
+              child: ListView.builder(
+                  itemCount: informasi.length,
+                  itemBuilder: (context, index) {
+                    return CardCustom(
+                      informasi: informasi[index],
+                    );
+                  }),
             ),
             Container(
               width: SizeConfig.defaultWidth,
@@ -60,6 +56,29 @@ class InfoScreen extends StatelessWidget {
                 child: Text('tab Edukasi'),
               ),
             ),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class CardCustom extends StatelessWidget {
+  final Informasi informasi;
+
+  CardCustom({this.informasi});
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      elevation: 2,
+      child: Container(
+        height: 120,
+        width: SizeConfig.defaultWidth,
+        padding: EdgeInsets.all(20),
+        child: Row(
+          children: <Widget>[
+            Text('${informasi.id}'),
           ],
         ),
       ),

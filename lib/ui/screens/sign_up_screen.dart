@@ -69,15 +69,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
     namaController.text = widget.registrationData.nama.trim();
     tempatLahirController.text = widget.registrationData.tempatLahir.trim();
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
-    //_currentGolDarah = widget.registrationData.golDarah;
-    // if (_currentGolDarah != null) {
+    passwordController.text = widget.registrationData.password.trim();
+    confirmPasswordController.text = widget.registrationData.password.trim();
+    print(widget.registrationData.golDarah);
+    print(widget.registrationData.jenkel);
+    print('init state');
+    // if (_currentGolDarah == null && widget.registrationData.golDarah != null) {
     //   _currentGolDarah = widget.registrationData.golDarah;
-    // } else {
-    //   return null;
     // }
+    handleRegistrationData(
+        currentGolDarah: _currentGolDarah,
+        golDarah: widget.registrationData.golDarah);
+
     // jenkelVal = widget.registrationData.jenkel;
-    // passwordController.text = widget.registrationData.password.trim();
-    // confirmPasswordController.text = widget.registrationData.password.trim();
   }
 
   @override
@@ -155,6 +159,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   ),
                   Container(
                     width: SizeConfig.defaultWidth / 4.4,
+                    //
                     child: DropdownButtonFormField(
                       value: _currentGolDarah,
                       onChanged: (val) =>

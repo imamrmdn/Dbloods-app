@@ -14,8 +14,8 @@ class RegistrationData {
   RegistrationData({
     this.nama = ' ',
     this.email = '',
-    this.golDarah = ' - ',
-    this.jenkel = ' ',
+    this.golDarah,
+    this.jenkel,
     this.pekerjaan = '',
     this.profilePicture,
     this.tanggalLahir,

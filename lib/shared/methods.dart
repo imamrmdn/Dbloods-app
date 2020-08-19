@@ -18,6 +18,12 @@ String formatAge(String date) {
 }
 
 //
+// Future<void> handleJenkelType(int value, int jenkelType)async
+// {
+//  void setState(() {});
+// }
+
+//
 // String validatePassword(String value) {
 //   Pattern pattern =
 //       ...;
@@ -41,8 +47,15 @@ class UpperCaseTextFormatter extends TextInputFormatter {
   TextEditingValue formatEditUpdate(
       TextEditingValue oldValue, TextEditingValue newValue) {
     return TextEditingValue(
-      text: newValue.text?.toUpperCase(),
+      text: newValue.text.capitalize(),
       selection: newValue.selection,
     );
+  }
+}
+
+//
+void handleRegistrationData({String currentGolDarah, String golDarah}) {
+  if (currentGolDarah == null && golDarah != null) {
+    currentGolDarah = golDarah;
   }
 }

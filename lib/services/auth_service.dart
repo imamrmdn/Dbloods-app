@@ -60,6 +60,11 @@ class AuthServices {
     await _auth.signOut();
   }
 
+  // // note: Method Forgot Password
+  // static Future<void> forgotPassword(String email) async {
+  //   await _auth.sendPasswordResetEmail(email: email);
+  // }
+
   //
   static Stream<FirebaseUser> get userStream => _auth.onAuthStateChanged;
 }
