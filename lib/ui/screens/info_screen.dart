@@ -43,7 +43,7 @@ class InfoScreen extends StatelessWidget {
               child: ListView.builder(
                   itemCount: informasi.length,
                   itemBuilder: (context, index) {
-                    return CardCustom(
+                    return CardCustomInformasi(
                       informasi: informasi[index],
                     );
                   }),
@@ -56,29 +56,6 @@ class InfoScreen extends StatelessWidget {
                 child: Text('tab Edukasi'),
               ),
             ),
-          ],
-        ),
-      ),
-    );
-  }
-}
-
-class CardCustom extends StatelessWidget {
-  final Informasi informasi;
-
-  CardCustom({this.informasi});
-
-  @override
-  Widget build(BuildContext context) {
-    return Card(
-      elevation: 2,
-      child: Container(
-        height: 120,
-        width: SizeConfig.defaultWidth,
-        padding: EdgeInsets.all(20),
-        child: Row(
-          children: <Widget>[
-            Text('${informasi.id}'),
           ],
         ),
       ),

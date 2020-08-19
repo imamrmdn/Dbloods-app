@@ -32,3 +32,4 @@ part 'profilescreen_widget/profile_identity.dart';
 part 'profilescreen_widget/line_dash.dart';
 part 'notify/bottomsheet_emailvalidator.dart';
 part 'notify/flushbar.dart';
+part 'informasi/info_card.dart';

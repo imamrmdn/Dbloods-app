@@ -22,15 +22,26 @@ class Informasi {
 List<Informasi> informasi = [
   Informasi(
     id: 23456,
-    url: '',
+    url: 'https://kawalcovid19.id/',
+    gambar:
+        'https://pbs.twimg.com/profile_images/1234313294728482816/MxqOJd7F_400x400.jpg',
+    title: 'Kawal informasi seputar COVID-19 secara tepat dan akurat.',
+    deskripsi:
+        'merupakan sumber informasi inisiatif sukarela warganet Indonesia pro-data, terdiri dari praktisi kesehatan, akademisi & profesional.',
+    sumber: 'kawalcovid19.id',
+    tanggal: '',
+  ),
+  Informasi(
+    id: 53421,
+    url: 'https://www.who.int/',
     gambar: '',
-    title: 'judul',
+    title: 'judul2',
     deskripsi: '',
     sumber: '',
     tanggal: '',
   ),
   Informasi(
-    id: 53421,
+    id: 21346,
     url: '',
     gambar: '',
     title: 'judul2',
@@ -39,7 +50,7 @@ List<Informasi> informasi = [
     tanggal: '',
   ),
   Informasi(
-    id: 53421,
+    id: 64512,
     url: '',
     gambar: '',
     title: 'judul2',
@@ -48,7 +59,7 @@ List<Informasi> informasi = [
     tanggal: '',
   ),
   Informasi(
-    id: 53421,
+    id: 86612,
     url: '',
     gambar: '',
     title: 'judul2',
@@ -57,7 +68,7 @@ List<Informasi> informasi = [
     tanggal: '',
   ),
   Informasi(
-    id: 53421,
+    id: 12352,
     url: '',
     gambar: '',
     title: 'judul2',
@@ -66,16 +77,7 @@ List<Informasi> informasi = [
     tanggal: '',
   ),
   Informasi(
-    id: 53421,
-    url: '',
-    gambar: '',
-    title: 'judul2',
-    deskripsi: '',
-    sumber: '',
-    tanggal: '',
-  ),
-  Informasi(
-    id: 53421,
+    id: 23476,
     url: '',
     gambar: '',
     title: 'judul2',

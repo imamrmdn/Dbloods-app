@@ -7,3 +7,4 @@ part 'registration_model.dart';
 part 'stokdarah_model.dart';
 part 'rumahsakit_model.dart';
 part 'informasi_model.dart';
+part 'edukasi_model.dart';
