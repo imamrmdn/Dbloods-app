@@ -8,6 +8,19 @@ Future<File> getImage() async {
   return image;
 }
 
+//upload image
+Future<String> uploadImage(File image) async {
+  String fileName = basename(image.path);
+
+  StorageReference ref = FirebaseStorage.instance.ref().child(fileName);
+  //uploadfileimage
+  StorageUploadTask taskUpload = ref.putFile(image);
+  StorageTaskSnapshot snapshot = await taskUpload.onComplete;
+  var downloadUrl = await snapshot.ref.getDownloadURL();
+
+  return downloadUrl;
+}
+
 //calculate age method
 String formatAge(String date) {
   final yearsNow = DateTime.now().year;
@@ -16,23 +29,6 @@ String formatAge(String date) {
   final age = yearsNow - yearsAgo;
   return age.toString();
 }
-
-//
-// Future<void> handleJenkelType(int value, int jenkelType)async
-// {
-//  void setState(() {});
-// }
-
-//
-// String validatePassword(String value) {
-//   Pattern pattern =
-//       ...;
-//   RegExp regex = RegExp(pattern);
-//   if (!regex.hasMatch(value))
-//     return 'Enter Valid Email';
-//   else
-//     return null;
-// }
 
 //
 extension StringExtension on String {
@@ -54,8 +50,81 @@ class UpperCaseTextFormatter extends TextInputFormatter {
 }
 
 //
-void handleRegistrationData({String currentGolDarah, String golDarah}) {
+void handleGolDarah({String currentGolDarah, String golDarah}) {
   if (currentGolDarah == null && golDarah != null) {
     currentGolDarah = golDarah;
   }
+}
+
+//
+//todo: function call whatsapp
+
+//todo: calculate golongan darah
+enum GolDarah {
+  golApos,
+  golBpos,
+  golOpos,
+  golABpos,
+  golAneg,
+  golBneg,
+  golOneg,
+  golABneg,
+}
+
+double hitungGolDarah(GolDarah golDarah, List<StokDarah> stokdarah) {
+  switch (golDarah) {
+    case GolDarah.golApos:
+      return stokdarah
+          .map((item) => item.golApos)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golBpos:
+      return stokdarah
+          .map((item) => item.golBpos)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golOpos:
+      return stokdarah
+          .map((item) => item.golOpos)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golABpos:
+      return stokdarah
+          .map((item) => item.golABpos)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golAneg:
+      return stokdarah
+          .map((item) => item.golAneg)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golBneg:
+      return stokdarah
+          .map((item) => item.golBneg)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    case GolDarah.golOneg:
+      return stokdarah
+          .map((item) => item.golOneg)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+    default:
+      return stokdarah
+          .map((item) => item.golABneg)
+          .reduce((accumulator, current) => accumulator + current)
+          .toDouble();
+      break;
+  }
+}
+
+//format date
+String formatDate(DateTime date) {
+  return DateFormat('dd-MM-yyyy').format(date);
 }
