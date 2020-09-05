@@ -56,9 +56,7 @@ class StokScreen extends StatelessWidget {
                                   },
                                 );
                               } else {
-                                return Card(
-                                  child: Loading2(),
-                                );
+                                return LoadingShimmer();
                               }
                             },
                           ),
