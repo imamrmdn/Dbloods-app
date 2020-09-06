@@ -14,8 +14,9 @@ class StokScreen extends StatelessWidget {
       body: RefreshIndicator(
         color: mainColor,
         onRefresh: () async {
-          await Future.delayed(Duration(seconds: 4));
           context.bloc<StokdarahBloc>().add(FetchStokDarah());
+          await Future.delayed(Duration(seconds: 2));
+          return;
         },
         child: Stack(
           children: <Widget>[
@@ -56,7 +57,9 @@ class StokScreen extends StatelessWidget {
                                   },
                                 );
                               } else {
-                                return LoadingShimmer();
+                                return LoadingShimmer(
+                                  height: 170,
+                                );
                               }
                             },
                           ),
