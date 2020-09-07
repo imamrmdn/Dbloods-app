@@ -37,17 +37,20 @@ class StokDarahCard extends StatelessWidget {
             ),
             Row(
               children: <Widget>[
+                Icon(MdiIcons.googleMaps),
+                SizedBox(width: 15),
                 SizedBox(
                   width: SizeConfig.defaultWidth - 2 * 20 - 65 - 5.1,
-                  child: Text(
+                  child: SelectableText(
                     "${stokDarah.alamatrs}.",
                     style: blackTextFont2,
                     maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
+                    //overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],
             ),
+            Divider(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: <Widget>[
