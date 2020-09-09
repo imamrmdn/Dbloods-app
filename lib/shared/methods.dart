@@ -56,21 +56,7 @@ void handleGolDarah({String currentGolDarah, String golDarah}) {
   }
 }
 
-//
-//todo: function call whatsapp
-
 //todo: calculate golongan darah
-enum GolDarah {
-  golApos,
-  golBpos,
-  golOpos,
-  golABpos,
-  golAneg,
-  golBneg,
-  golOneg,
-  golABneg,
-}
-
 double hitungGolDarah(GolDarah golDarah, List<StokDarah> stokdarah) {
   switch (golDarah) {
     case GolDarah.golApos:
@@ -128,3 +114,76 @@ double hitungGolDarah(GolDarah golDarah, List<StokDarah> stokdarah) {
 String formatDate(DateTime date) {
   return DateFormat('dd-MM-yyyy').format(date);
 }
+
+//cek stok darah
+cekStokDarah(int golDarah) {
+  String nol = 'tidak tersedia';
+  String stok = '$golDarah Stok';
+  if (golDarah == 0) {
+    return nol;
+  } else {
+    return stok;
+  }
+}
+
+//Belum ada Data
+noDataYet(String menu) {
+  return ListView(
+    children: <Widget>[
+      Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Image.asset(
+              'assets/no_data.png',
+              height: SizeConfig.defaultWidth / 2,
+            ),
+            Text('Belum Ada Data $menu', style: blackTextFont),
+          ],
+        ),
+      ),
+    ],
+  );
+}
+
+//cachedNetworkImage
+cachedNetworkImage(String gambar, TickerProvider vsync) {
+  if (gambar != '') {
+    return CachedNetworkImage(
+      imageUrl: gambar,
+      progressIndicatorBuilder: (context, url, downloadProgress) =>
+          SpinKitPulse(
+              color: Colors.red[300],
+              controller: AnimationController(
+                  vsync: vsync,
+                  value: downloadProgress.progress,
+                  duration: const Duration(milliseconds: 1200))),
+      errorWidget: (context, url, error) => Icon(Icons.error),
+      imageBuilder: (context, imageProvider) => Container(
+        width: 90.0,
+        height: 90.0,
+        decoration: BoxDecoration(
+          borderRadius: borderRadius8,
+          image: DecorationImage(
+            image: imageProvider,
+            fit: BoxFit.cover,
+          ),
+        ),
+      ),
+    );
+  } else {
+    return Container(
+      height: 90,
+      width: 90,
+      decoration: BoxDecoration(
+        borderRadius: borderRadius8,
+        image: DecorationImage(
+          image: AssetImage('assets/gallery_icon.png'),
+          fit: BoxFit.cover,
+        ),
+      ),
+    );
+  }
+}
+
+//cek data event

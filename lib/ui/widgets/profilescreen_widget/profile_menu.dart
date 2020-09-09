@@ -76,8 +76,8 @@ class ProfileMenu extends StatelessWidget {
                 },
                 onPressed2: () {
                   Navigator.of(context).pop();
-                  context.bloc<UserBloc>().add(SignOut());
                   AuthServices.signOut();
+                  context.bloc<UserBloc>().add(SignOut());
                   showFlushbarCustom(context,
                       icon: Icon(Icons.done_outline),
                       title: 'Anda telah sign out dari dbloods',

@@ -45,6 +45,13 @@ class StokScreen extends StatelessWidget {
                             builder: (_, stokState) {
                               if (stokState is StokDarahLoaded) {
                                 List<StokDarah> stokDarah = stokState.stokDarah;
+                                if (stokDarah == null ||
+                                    stokDarah.isEmpty ||
+                                    stokDarah == []) {
+                                  return Center(
+                                    child: Text('belum ada data'),
+                                  );
+                                }
                                 return ListView.builder(
                                   itemCount: stokDarah.length,
                                   itemBuilder: (context, i) {
@@ -57,7 +64,7 @@ class StokScreen extends StatelessWidget {
                                   },
                                 );
                               } else {
-                                return LoadingShimmer(
+                                return LoadingShimmerStokDarah(
                                   height: 170,
                                 );
                               }
@@ -172,7 +179,9 @@ class StokScreen extends StatelessWidget {
                         ],
                       );
                     } else {
-                      return Center(child: Loading2(width: 50, height: 50));
+                      return Center(
+                        child: Loading3(width: 50, height: 50),
+                      );
                     }
                   },
                 ),

@@ -65,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                     );
                   } else {
                     return Center(
-                      child: Loading2(height: 40.0, width: 40.0),
+                      child: Loading3(height: 50.0, width: 50.0),
                     );
                   }
                 },

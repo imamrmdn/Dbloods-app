@@ -29,22 +29,3 @@ class LineDash extends StatelessWidget {
     );
   }
 }
-
-class LineDash2 extends StatelessWidget {
-  final EdgeInsetsGeometry margin;
-
-  LineDash2({this.margin});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: margin,
-      height: 2,
-      width: SizeConfig.defaultWidth,
-      decoration: BoxDecoration(
-        color: greyColor,
-        borderRadius: borderRadius8,
-      ),
-    );
-  }
-}

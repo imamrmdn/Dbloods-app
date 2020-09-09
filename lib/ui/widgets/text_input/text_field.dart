@@ -11,6 +11,7 @@ class TextInputField extends StatelessWidget {
   final String labelText;
   final Function validator;
   final List<TextInputFormatter> inputFormatters;
+  final TextInputAction textInputAction;
 
   TextInputField({
     this.hintText,
@@ -23,6 +24,7 @@ class TextInputField extends StatelessWidget {
     this.labelText,
     this.validator,
     this.inputFormatters,
+    this.textInputAction,
   });
 
   @override
@@ -30,6 +32,7 @@ class TextInputField extends StatelessWidget {
     return TextFormField(
       style: blackTextFont,
       onChanged: onChanged,
+      textInputAction: textInputAction,
       controller: controller,
       obscureText: obscureText,
       keyboardType: textInputType,

@@ -45,7 +45,7 @@ class _InfoScreenState extends State<InfoScreen> {
               width: SizeConfig.defaultWidth,
               height: SizeConfig.defaultHeight,
               color: whiteColor,
-              padding: EdgeInsets.only(bottom: 80.0),
+              padding: EdgeInsets.only(bottom: 70.0),
               child: RefreshIndicator(
                 color: mainColor,
                 onRefresh: refreshInformasi,
@@ -77,7 +77,7 @@ class _InfoScreenState extends State<InfoScreen> {
               width: SizeConfig.defaultWidth,
               height: SizeConfig.defaultHeight,
               color: whiteColor,
-              padding: EdgeInsets.only(bottom: 80.0),
+              padding: EdgeInsets.only(bottom: 70.0),
               child: RefreshIndicator(
                 color: mainColor,
                 onRefresh: refreshEdukasi,

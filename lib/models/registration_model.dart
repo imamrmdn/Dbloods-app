@@ -16,7 +16,7 @@ class RegistrationData {
     this.email = '',
     this.golDarah,
     this.jenkel,
-    this.pekerjaan = '',
+    this.pekerjaan,
     this.profilePicture,
     this.tanggalLahir,
     this.tempatLahir = ' ',

@@ -66,6 +66,9 @@ class _AccountConfirmationScreenState extends State<AccountConfirmationScreen> {
                                   isConfirm = true;
                                 });
 
+                                imageFileToUpload =
+                                    widget.registrationData.profilePicture;
+
                                 SignInSignUpResult result =
                                     await AuthServices.signUp(
                                   widget.registrationData.nama,

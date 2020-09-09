@@ -9,7 +9,7 @@ class WhatsAppButton extends StatelessWidget {
       child: FloatingActionButton(
         onPressed: () async {
           await launch(
-              'https://wa.me/$number?text=Hello Admin Mau menanyakan tentang ketersediaan stok darah dong');
+              'https://wa.me/$number?text=Hello Admin saya Mau menanyakan tentang ketersediaan stok darah dong');
         },
         backgroundColor: mainColor,
         child: Icon(

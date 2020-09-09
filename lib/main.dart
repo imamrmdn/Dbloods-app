@@ -21,6 +21,10 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => ScreenBloc(OnInitialScreen())),
           BlocProvider(create: (_) => UserBloc(UserInitial())),
           BlocProvider(create: (_) => ThemeBloc(ThemeState(ThemeData()))),
+          BlocProvider(create: (_) => StokdarahBloc()..add(FetchStokDarah())),
+          BlocProvider(create: (_) => InformasiBloc()..add(FetchInformasi())),
+          BlocProvider(create: (_) => EdukasiBloc()..add(FetchEdukasi())),
+          BlocProvider(create: (_) => EventdonorBloc()..add(FetchEventDonor())),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (_, themeState) => MaterialApp(

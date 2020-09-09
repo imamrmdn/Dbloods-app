@@ -8,6 +8,9 @@ const Color whiteColor = Colors.white;
 const Color blackColor = Colors.black;
 const Color greyColor = Colors.grey;
 
+final Icon iconDbloods = Icon(MdiIcons.heart, color: mainColor, size: 20);
+final Icon iconDbloods2 = Icon(MdiIcons.bloodBag, color: mainColor, size: 20);
+
 BorderRadius borderRadius8 = BorderRadius.circular(8);
 BorderRadius borderRadius10 = BorderRadius.circular(10);
 BorderRadius borderRadius5 = BorderRadius.circular(5);

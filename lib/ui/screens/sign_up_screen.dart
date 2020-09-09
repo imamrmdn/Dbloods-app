@@ -71,17 +71,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
     passwordController.text = widget.registrationData.password.trim();
     confirmPasswordController.text = widget.registrationData.password.trim();
-    print(widget.registrationData.golDarah);
-    print(widget.registrationData.jenkel);
-    print('init state');
-    // if (_currentGolDarah == null && widget.registrationData.golDarah != null) {
-    //   _currentGolDarah = widget.registrationData.golDarah;
-    // }
-    handleRegistrationData(
-        currentGolDarah: _currentGolDarah,
-        golDarah: widget.registrationData.golDarah);
 
-    // jenkelVal = widget.registrationData.jenkel;
+    print('init state');
+    if (_currentGolDarah == null && widget.registrationData.golDarah != null) {
+      _currentGolDarah = widget.registrationData.golDarah;
+    }
+    // if (pekerjaan[_defaultChoiceIndex] == 'Mahasiswa' &&
+    //     widget.registrationData.pekerjaan != null) {
+    //   setState(() {
+    //     pekerjaan[_defaultChoiceIndex] = widget.registrationData.pekerjaan;
+    //   });
+    // }
   }
 
   @override

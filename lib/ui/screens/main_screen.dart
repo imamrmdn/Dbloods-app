@@ -20,6 +20,7 @@ class _MainScreenState extends State<MainScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: mainColor,
+        resizeToAvoidBottomInset: false,
         body: SafeArea(
           child: Stack(
             children: <Widget>[
