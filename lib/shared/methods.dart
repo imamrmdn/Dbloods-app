@@ -187,3 +187,18 @@ cachedNetworkImage(String gambar, TickerProvider vsync) {
 }
 
 //cek data event
+void handleOnTapEvent(String date) {
+  DateTime dateNows = DateTime.now();
+  // final tanggalSekarang = '10-09-2020';
+  final dateFormat = formatDate(DateTime.parse(date));
+  final dateNowFormat = formatDate(dateNows);
+  if (dateFormat != dateNowFormat) {
+    if (dateNows.isAfter(DateTime.parse(date))) {
+      print('event donor sudah kadaluarsa');
+    } else {
+      print('belum bisa mengikut event sesuai tanggal!');
+    }
+  } else {
+    print('berhasil mengikuti event');
+  }
+}
