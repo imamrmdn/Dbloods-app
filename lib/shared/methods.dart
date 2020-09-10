@@ -115,6 +115,11 @@ String formatDate(DateTime date) {
   return DateFormat('dd-MM-yyyy').format(date);
 }
 
+//format date 2
+String formatDate2(String date) {
+  return DateFormat('dd-MM-yyyy').format(DateTime.parse(date));
+}
+
 //cek stok darah
 cekStokDarah(int golDarah) {
   String nol = 'tidak tersedia';
@@ -189,8 +194,7 @@ cachedNetworkImage(String gambar, TickerProvider vsync) {
 //cek data event
 void handleOnTapEvent(String date) {
   DateTime dateNows = DateTime.now();
-  // final tanggalSekarang = '10-09-2020';
-  final dateFormat = formatDate(DateTime.parse(date));
+  final dateFormat = formatDate2(date);
   final dateNowFormat = formatDate(dateNows);
   if (dateFormat != dateNowFormat) {
     if (dateNows.isAfter(DateTime.parse(date))) {

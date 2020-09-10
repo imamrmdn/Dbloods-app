@@ -1,8 +1,6 @@
 part of '../widgets.dart';
 
 class EventCard extends StatelessWidget {
-  final DateTime dateNow = DateTime.now();
-  final String dateEvent = '13-09-2020';
   final EventDonor eventDonor;
 
   EventCard({this.eventDonor});
@@ -55,8 +53,7 @@ class EventCard extends StatelessWidget {
       children: <Widget>[
         Image.asset('assets/date.png', height: 30),
         SizedBox(width: 15),
-        Text(
-            'Jadwal Event ${formatDate(DateTime.parse(eventDonor.tanggalEvent))}',
+        Text('Jadwal Event ${formatDate2(eventDonor.tanggalEvent)}',
             style: blackTextFont)
       ],
     );
@@ -64,14 +61,9 @@ class EventCard extends StatelessWidget {
 
   itemRight() {
     return InkWell(
-      onTap: (formatDate(dateNow) !=
-              formatDate(DateTime.parse(eventDonor.tanggalEvent)))
-          ? () {
-              print('belum bisa mengikuti event sesuai tanggal');
-            }
-          : () {
-              print('berhasil mengikuti event');
-            },
+      onTap: () {
+        handleOnTapEvent(eventDonor.tanggalEvent);
+      },
       child: Row(
         children: <Widget>[
           Text(
