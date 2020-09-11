@@ -38,7 +38,7 @@ class EventCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   itemLeft(),
-                  itemRight(),
+                  itemRight(context),
                 ],
               ),
             ],
@@ -59,10 +59,10 @@ class EventCard extends StatelessWidget {
     );
   }
 
-  itemRight() {
+  itemRight(BuildContext context) {
     return InkWell(
       onTap: () {
-        handleOnTapEvent(eventDonor.tanggalEvent);
+        handleOnTapEvent(eventDonor.tanggalEvent, context);
       },
       child: Row(
         children: <Widget>[

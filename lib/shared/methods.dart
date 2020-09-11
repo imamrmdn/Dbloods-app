@@ -192,15 +192,26 @@ cachedNetworkImage(String gambar, TickerProvider vsync) {
 }
 
 //cek data event
-void handleOnTapEvent(String date) {
+handleOnTapEvent(String date, BuildContext context) {
   DateTime dateNows = DateTime.now();
   final dateFormat = formatDate2(date);
   final dateNowFormat = formatDate(dateNows);
+  final dateNowsDay = dateNows.day;
+  final dateEventDay = int.parse(dateFormat.split('-').first);
+  final timeEvent = dateEventDay - dateNowsDay;
+  //
   if (dateFormat != dateNowFormat) {
     if (dateNows.isAfter(DateTime.parse(date))) {
-      print('event donor sudah kadaluarsa');
+      return showDialog(
+        context: context,
+        builder: (_) => AlertDialogAnimation(
+          message:
+              'Maaf Tidak Bisa Mengikuti Event Donor ini karena tanggal sudah kadaluarsa',
+        ),
+      );
     } else {
-      print('belum bisa mengikut event sesuai tanggal!');
+      print(
+          'waktu event tinggal $timeEvent hari lagi, belum bisa mengikut event sesuai tanggal!');
     }
   } else {
     print('berhasil mengikuti event');
