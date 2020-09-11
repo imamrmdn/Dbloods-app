@@ -182,7 +182,7 @@ cachedNetworkImage(String gambar, TickerProvider vsync) {
       width: 90,
       decoration: BoxDecoration(
         borderRadius: borderRadius8,
-        image: DecorationImage(
+/************* */ image: DecorationImage(
           image: AssetImage('assets/gallery_icon.png'),
           fit: BoxFit.cover,
         ),
@@ -196,24 +196,40 @@ handleOnTapEvent(String date, BuildContext context) {
   DateTime dateNows = DateTime.now();
   final dateFormat = formatDate2(date);
   final dateNowFormat = formatDate(dateNows);
-  final dateNowsDay = dateNows.day;
   final dateEventDay = int.parse(dateFormat.split('-').first);
-  final timeEvent = dateEventDay - dateNowsDay;
+  final timeEvent = dateEventDay - dateNows.day;
+
   //
   if (dateFormat != dateNowFormat) {
     if (dateNows.isAfter(DateTime.parse(date))) {
       return showDialog(
         context: context,
         builder: (_) => AlertDialogAnimation(
+          image: Image.asset(
+            'assets/notify_email.png',
+            width: 250,
+            height: 130,
+          ),
           message:
-              'Maaf Tidak Bisa Mengikuti Event Donor ini karena tanggal sudah kadaluarsa',
+              'Maaf Tidak Bisa Mengikuti Event Donor ini Karena Tanggal Event Sudah Lewat ${timeEvent.abs()} Hari yang Lalu.',
         ),
       );
     } else {
-      print(
-          'waktu event tinggal $timeEvent hari lagi, belum bisa mengikut event sesuai tanggal!');
+      return showDialog(
+        context: context,
+        builder: (_) => AlertDialogAnimation(
+          image: Image.asset(
+            'assets/waiting.png',
+            width: 250,
+            height: 130,
+          ),
+          message:
+              'Tunggu ya Waktu Event tinggal $timeEvent hari lagi, baru kamu bisa mengikutinya',
+        ),
+      );
     }
   } else {
+    //TODO: Detail Event
     print('berhasil mengikuti event');
   }
 }

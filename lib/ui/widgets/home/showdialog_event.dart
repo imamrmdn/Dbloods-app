@@ -2,8 +2,9 @@ part of '../widgets.dart';
 
 class AlertDialogAnimation extends StatefulWidget {
   final String message;
+  final Image image;
 
-  AlertDialogAnimation({this.message});
+  AlertDialogAnimation({this.message, this.image});
 
   @override
   _AlertDialogAnimationState createState() => _AlertDialogAnimationState();
@@ -38,6 +39,7 @@ class _AlertDialogAnimationState extends State<AlertDialogAnimation>
         child: ScaleTransition(
           scale: scaleAnimation,
           child: Container(
+            height: SizeConfig.defaultHeight / 4,
             margin:
                 EdgeInsets.symmetric(horizontal: SizeConfig.defaultWidth / 7),
             decoration: BoxDecoration(
@@ -46,7 +48,16 @@ class _AlertDialogAnimationState extends State<AlertDialogAnimation>
             ),
             child: Padding(
               padding: EdgeInsets.all(20),
-              child: Text(widget.message, style: blackTextFont),
+              child: Column(
+                children: <Widget>[
+                  widget.image,
+                  Text(
+                    widget.message,
+                    style: blackTextFont,
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
             ),
           ),
         ),
