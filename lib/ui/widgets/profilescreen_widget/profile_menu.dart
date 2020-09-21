@@ -12,6 +12,9 @@ class ProfileMenu extends StatelessWidget {
           onTap: () {
             context.bloc<ScreenBloc>().add(GoToEditProfileScreen());
           },
+        ),
+        InkWell(
+          onTap: () {},
           child: Row(
             children: <Widget>[
               SvgPicture.asset('assets/edit_profile.svg', height: 30),

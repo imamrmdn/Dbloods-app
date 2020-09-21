@@ -13,7 +13,6 @@ class EventDonorService {
     //
     var data = json.decode(response.body) as List;
     var listDataEvent = data.reversed;
-
     return listDataEvent.map((e) => EventDonor.fromJson(e)).toList();
   }
 }
