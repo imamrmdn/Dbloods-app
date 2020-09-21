@@ -30,26 +30,30 @@ class Wrapper extends StatelessWidget {
                       ? AccountConfirmationScreen(screenState.registrationData)
                       : (screenState is OnEventDetailScreen)
                           ? EventDetailScreen(screenState.eventDonor)
-                          : (screenState is OnInformasiDetailScreen)
-                              ? InformasiDetailScreen(screenState.informasi)
-                              : (screenState is OnEdukasiDetailScreen)
-                                  ? EdukasiDetailScreen(
-                                      screenState.edukasiDonor)
-                                  : (screenState is OnEditProfileScreen)
-                                      ? EditProfileScreen()
-                                      : (screenState is OnRiwayatDonorScreen)
-                                          ? RiwayatDonorScreen()
-                                          : (screenState is OnAboutAppScreen)
-                                              ? AboutAppScreen()
-                                              : MainScreen(
-                                                  bottomNavBarIndex:
-                                                      (screenState
+                          : (screenState is OnGetDonorIdScreen)
+                              ? GetDonorIdScreen(screenState.eventDonor)
+                              : (screenState is OnInformasiDetailScreen)
+                                  ? InformasiDetailScreen(screenState.informasi)
+                                  : (screenState is OnEdukasiDetailScreen)
+                                      ? EdukasiDetailScreen(
+                                          screenState.edukasiDonor)
+                                      : (screenState is OnEditProfileScreen)
+                                          ? EditProfileScreen()
+                                          : (screenState
+                                                  is OnRiwayatDonorScreen)
+                                              ? RiwayatDonorScreen()
+                                              : (screenState
+                                                      is OnAboutAppScreen)
+                                                  ? AboutAppScreen()
+                                                  : MainScreen(
+                                                      bottomNavBarIndex:
+                                                          (screenState
+                                                                  as OnMainScreen)
+                                                              .bottomNavBarIndex,
+                                                      initialIndex: (screenState
                                                               as OnMainScreen)
-                                                          .bottomNavBarIndex,
-                                                  initialIndex: (screenState
-                                                          as OnMainScreen)
-                                                      .initialIndex,
-                                                ),
+                                                          .initialIndex,
+                                                    ),
 
       // TODO: delete param bottomNavBarIndex if you sign in, add again if you after sign in
       // TODO: poto must be under 100kb

@@ -13,8 +13,52 @@ class EdukasiDetailScreen extends StatelessWidget {
             .add(GoToMainScreen(bottomNavBarIndex: 1, initialIndex: 1));
         return;
       },
-      child: Scaffold(
-        body: Center(child: Text('${edukasiDonor.deskripsi}')),
+      child: Container(
+        color: mainColor,
+        child: SafeArea(
+          child: Scaffold(
+            backgroundColor: whiteColor,
+            body: Column(
+              children: <Widget>[
+                Image.network('${edukasiDonor.gambar}'),
+                SizedBox(height: 10),
+                Padding(
+                  padding: const EdgeInsets.all(10),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(
+                        'Penulis: ${edukasiDonor.penulis}',
+                        style: blackTextFont.copyWith(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                      ),
+                      Text(
+                        '${formatDate2(edukasiDonor.createdAt)}',
+                        style: blackTextFont.copyWith(
+                            fontSize: 17, fontWeight: FontWeight.bold),
+                      ),
+                    ],
+                  ),
+                ),
+                Divider(),
+                Expanded(
+                  child: ListView(
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(10),
+                        child: Text(
+                          ' ${edukasiDonor.deskripsi.trim()}',
+                          style: blackTextFont,
+                          textAlign: TextAlign.justify,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ),
     );
   }

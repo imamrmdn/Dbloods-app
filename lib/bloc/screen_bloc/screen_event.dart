@@ -51,6 +51,15 @@ class GoToEventDetailScreen extends ScreenEvent {
   List<Object> get props => [eventDonor];
 }
 
+class GoToGetDonorIdScreen extends ScreenEvent {
+  final EventDonor eventDonor;
+
+  GoToGetDonorIdScreen(this.eventDonor);
+
+  @override
+  List<Object> get props => [eventDonor];
+}
+
 class GoToInformasiDetailScreen extends ScreenEvent {
   final Informasi informasi;
 

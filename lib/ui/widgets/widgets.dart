@@ -60,6 +60,7 @@ part 'informasi/webview_infor.dart';
 
 part 'home/detail_event.dart';
 part 'home/showdialog_event.dart';
+part 'home/selecttable_box.dart';
 
 part 'stok/stokdarah_card.dart';
 part 'stok/whatsapp_button.dart';

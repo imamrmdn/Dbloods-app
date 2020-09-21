@@ -27,7 +27,8 @@ class _InfoScreenState extends State<InfoScreen> {
                 children: <Widget>[
                   Icon(MdiIcons.viewList),
                   SizedBox(width: 10),
-                  Text('Informasi', style: TextStyle(fontSize: 18)),
+                  Text('Informasi',
+                      style: whiteTextFont.copyWith(fontSize: 17)),
                 ],
               )),
               Tab(
@@ -36,7 +37,8 @@ class _InfoScreenState extends State<InfoScreen> {
                   children: <Widget>[
                     Icon(MdiIcons.castEducation),
                     SizedBox(width: 10),
-                    Text('Edukasi', style: TextStyle(fontSize: 18)),
+                    Text('Edukasi',
+                        style: whiteTextFont.copyWith(fontSize: 17)),
                   ],
                 ),
               ),

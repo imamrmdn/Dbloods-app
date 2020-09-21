@@ -1,12 +1,25 @@
 part of 'screens.dart';
 
-class EventDetailScreen extends StatelessWidget {
+class EventDetailScreen extends StatefulWidget {
   final EventDonor eventDonor;
 
   EventDetailScreen(this.eventDonor);
 
   @override
+  _EventDetailScreenState createState() => _EventDetailScreenState();
+}
+
+class _EventDetailScreenState extends State<EventDetailScreen> {
+  DateTime selectedDate;
+  int selectTime;
+  bool isValid = false;
+
+  @override
   Widget build(BuildContext context) {
+    // print(DateTime.now().day);
+    // print(int.parse(
+    //     formatDate2(widget.eventDonor.tanggalEvent).split('-').first));
+    // print(selectedDate.day);
     return WillPopScope(
       onWillPop: () async {
         context.bloc<ScreenBloc>().add(GoToMainScreen(bottomNavBarIndex: 0));
@@ -27,7 +40,7 @@ class EventDetailScreen extends StatelessWidget {
                   height: 300,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: NetworkImage(eventDonor.gambar),
+                      image: NetworkImage(widget.eventDonor.gambar),
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -71,7 +84,7 @@ class EventDetailScreen extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
         Text(
-          eventDonor.title,
+          widget.eventDonor.title,
           style: blackTextFont.copyWith(fontSize: 20),
           textAlign: TextAlign.left,
           maxLines: 2,
@@ -83,45 +96,81 @@ class EventDetailScreen extends StatelessWidget {
         Text('Deskripsi Event:', style: blackTextFont.copyWith(fontSize: 16)),
         SizedBox(height: 20),
         Text(
-          eventDonor.deskripsi,
+          widget.eventDonor.deskripsi,
           style: blackTextFont.copyWith(fontWeight: FontWeight.w200),
           textAlign: TextAlign.justify,
         ),
         //noted: pilih jam Event
         SizedBox(height: 20),
-        Text('Pilih Jam Event:', style: blackTextFont.copyWith(fontSize: 16)),
+        Text('Pilih Jam Event yang kamu mau:',
+            style: blackTextFont.copyWith(fontSize: 16)),
         SizedBox(height: 20),
-        Row(
-          children: <Widget>[
-            Container(
-              width: 100,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius5,
-                border: Border.all(color: blackColor),
-              ),
-            ),
-            SizedBox(width: 20),
-            Container(
-              width: 100,
-              height: 50,
-              decoration: BoxDecoration(
-                borderRadius: borderRadius5,
-                border: Border.all(color: blackColor),
-              ),
-            ),
-          ],
-        ),
+        //
+        generateTimeTable(),
       ],
     );
   }
 
   itemBottom(BuildContext context) {
     return ButtonNext(
+      color: (isValid) ? mainColor : greyColor,
+      text: 'Selanjutnya',
       onPressed: () {
         //todo: mendapat donor id
-        // context.bloc<ScreenBloc>().add(GoToGetDonorIdScreen(eventDonor));
+        if (isValid) {
+          context
+              .bloc<ScreenBloc>()
+              .add(GoToGetDonorIdScreen(widget.eventDonor));
+        }
       },
+    );
+  }
+
+  generateTimeTable() {
+    List<int> jadwal = List.generate(5, (index) => 9 + index * 2);
+    List<Widget> widgets = [];
+
+    widgets.add(
+      Container(
+        height: 50,
+        child: ListView.builder(
+          scrollDirection: Axis.horizontal,
+          itemCount: jadwal.length,
+          itemBuilder: (_, index) {
+            return Container(
+              margin: EdgeInsets.only(
+                left: (index == 0) ? 0 : 0,
+                right: (index < jadwal.length - 1) ? 16 : 24,
+              ),
+              child: SelectableBox(
+                '${jadwal[index]}:00',
+                isSelected: selectTime == jadwal[index],
+                isEnabled: jadwal[index] > DateTime.now().hour ||
+                    int.parse(formatDate2(widget.eventDonor.tanggalEvent)
+                            .split('-')
+                            .first) !=
+                        DateTime.now().day,
+                onTap: () {
+                  print(jadwal[index]);
+                  setState(() {
+                    selectTime = jadwal[index];
+                    if (jadwal[index] > DateTime.now().hour ||
+                        selectedDate.day != DateTime.now().day) {
+                      isValid = true;
+                    } else {
+                      isValid = false;
+                    }
+                  });
+                },
+              ),
+            );
+          },
+        ),
+      ),
+    );
+
+    return Column(
+      children: widgets,
     );
   }
 }

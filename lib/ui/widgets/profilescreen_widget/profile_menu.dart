@@ -12,9 +12,6 @@ class ProfileMenu extends StatelessWidget {
           onTap: () {
             context.bloc<ScreenBloc>().add(GoToEditProfileScreen());
           },
-        ),
-        InkWell(
-          onTap: () {},
           child: Row(
             children: <Widget>[
               SvgPicture.asset('assets/edit_profile.svg', height: 30),
@@ -63,7 +60,20 @@ class ProfileMenu extends StatelessWidget {
         SizedBox(height: 20.0),
         //Rate Dbloods App
         InkWell(
-          onTap: () {},
+          onTap: () {
+            //
+            return showDialog(
+              context: context,
+              builder: (_) => AlertDialogAnimation(
+                image: Image.asset(
+                  'assets/playstore.png',
+                  width: 250,
+                  height: 130,
+                ),
+                message: 'Maaf Aplikasi Dbloods Belum Tersedia di PlayStore',
+              ),
+            );
+          },
           child: Row(
             children: <Widget>[
               SvgPicture.asset('assets/rate_dbloods.svg', height: 30),

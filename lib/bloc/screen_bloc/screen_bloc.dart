@@ -25,6 +25,8 @@ class ScreenBloc extends Bloc<ScreenEvent, ScreenState> {
       yield OnAccountConfirmationScreen(event.registrationData);
     } else if (event is GoToEventDetailScreen) {
       yield OnEventDetailScreen(event.eventDonor);
+    } else if (event is GoToGetDonorIdScreen) {
+      yield OnGetDonorIdScreen(event.eventDonor);
     } else if (event is GoToInformasiDetailScreen) {
       yield OnInformasiDetailScreen(event.informasi);
     } else if (event is GoToEdukasiDetailScreen) {

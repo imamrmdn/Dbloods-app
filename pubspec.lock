@@ -247,7 +247,6 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
-<<<<<<< HEAD
   flutter_webview_plugin:
     dependency: "direct main"
     description:
@@ -255,8 +254,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.3.11"
-=======
->>>>>>> 125743d5df02f9762df19137a7099779dbf9ac8d
   google_fonts:
     dependency: "direct main"
     description:

@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       value: AuthServices.userStream,
       child: MultiBlocProvider(
         providers: [
-          BlocProvider(create: (_) => ScreenBloc(OnInitialScreen())),
+          BlocProvider(create: (_) => ScreenBloc(OnMainScreen())),
           BlocProvider(create: (_) => UserBloc(UserInitial())),
           BlocProvider(create: (_) => ThemeBloc(ThemeState(ThemeData()))),
           BlocProvider(create: (_) => StokdarahBloc()..add(FetchStokDarah())),
