@@ -16,9 +16,7 @@ Future<String> uploadImage(File image) async {
   //uploadfileimage
   StorageUploadTask taskUpload = ref.putFile(image);
   StorageTaskSnapshot snapshot = await taskUpload.onComplete;
-  var downloadUrl = await snapshot.ref.getDownloadURL();
-
-  return downloadUrl;
+  return await snapshot.ref.getDownloadURL();
 }
 
 //calculate age method

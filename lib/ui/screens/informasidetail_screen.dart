@@ -23,7 +23,9 @@ class _InformasiDetailScreenState extends State<InformasiDetailScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<ScreenBloc>().add(GoToMainScreen(bottomNavBarIndex: 1));
+        context
+            .bloc<ScreenBloc>()
+            .add(GoToMainScreen(bottomNavBarIndex: 1, initialIndex: 0));
         return;
       },
       child: WebviewScaffold(

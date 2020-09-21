@@ -9,6 +9,7 @@ class ButtonNext extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: SizeConfig.sizeHeight2 * 6, //50
+      width: SizeConfig.defaultWidth,
       child: RaisedButton(
         color: mainColor,
         splashColor: Colors.teal,

@@ -16,11 +16,12 @@ class GoToSignInScreen extends ScreenEvent {
 
 class GoToMainScreen extends ScreenEvent {
   final int bottomNavBarIndex;
+  final int initialIndex;
 
-  GoToMainScreen({this.bottomNavBarIndex});
+  GoToMainScreen({this.bottomNavBarIndex = 0, this.initialIndex = 0});
 
   @override
-  List<Object> get props => [bottomNavBarIndex];
+  List<Object> get props => [bottomNavBarIndex, initialIndex];
 }
 
 class GoToRegistrationScreen extends ScreenEvent {

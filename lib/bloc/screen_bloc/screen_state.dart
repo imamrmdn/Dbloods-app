@@ -21,11 +21,12 @@ class OnOnBoardingScreen extends ScreenState {
 
 class OnMainScreen extends ScreenState {
   final int bottomNavBarIndex;
+  final int initialIndex;
 
-  OnMainScreen({this.bottomNavBarIndex});
+  OnMainScreen({this.bottomNavBarIndex = 0, this.initialIndex = 0});
 
   @override
-  List<Object> get props => [bottomNavBarIndex];
+  List<Object> get props => [bottomNavBarIndex, initialIndex];
 }
 
 class OnRegistrationScreen extends ScreenState {

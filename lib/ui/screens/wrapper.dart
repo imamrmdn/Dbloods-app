@@ -46,9 +46,13 @@ class Wrapper extends StatelessWidget {
                                                       (screenState
                                                               as OnMainScreen)
                                                           .bottomNavBarIndex,
+                                                  initialIndex: (screenState
+                                                          as OnMainScreen)
+                                                      .initialIndex,
                                                 ),
 
       // TODO: delete param bottomNavBarIndex if you sign in, add again if you after sign in
+      // TODO: poto must be under 100kb
     );
   }
 }

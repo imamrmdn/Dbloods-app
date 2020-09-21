@@ -17,11 +17,12 @@ class DataSource {
     },
     {
       'pertanyaan': 'Kenapa Mesti Dbloods?',
-      'jawaban': '',
+      'jawaban':
+          'Karena Dbloods memudahkan para pendonor ingin berdonor darah dan mencari stok darah dari beberapa rumah sakit di jakarta',
     },
     {
       'pertanyaan': 'Syarat dan Ketentuan',
-      'jawaban': '',
+      'jawaban': 'syarat dan ketentuan berlaku oleh pembuat aplikasi ini.',
     },
   ];
 }

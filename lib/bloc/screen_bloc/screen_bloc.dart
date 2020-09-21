@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'package:dbloods_app/bloc/blocs.dart';
 import 'package:dbloods_app/models/models.dart';
 import 'package:equatable/equatable.dart';
 import 'package:bloc/bloc.dart';
@@ -17,7 +16,9 @@ class ScreenBloc extends Bloc<ScreenEvent, ScreenState> {
     } else if (event is GoToSignInScreen) {
       yield OnSignInScreen();
     } else if (event is GoToMainScreen) {
-      yield OnMainScreen(bottomNavBarIndex: event.bottomNavBarIndex);
+      yield OnMainScreen(
+          bottomNavBarIndex: event.bottomNavBarIndex,
+          initialIndex: event.initialIndex);
     } else if (event is GoToRegistrationScreen) {
       yield OnRegistrationScreen(event.registrationData);
     } else if (event is GoToAccountConfirmationScreen) {

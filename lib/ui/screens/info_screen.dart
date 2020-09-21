@@ -1,6 +1,10 @@
 part of 'screens.dart';
 
 class InfoScreen extends StatefulWidget {
+  final int initialIndex;
+
+  InfoScreen({this.initialIndex = 0});
+
   @override
   _InfoScreenState createState() => _InfoScreenState();
 }
@@ -9,6 +13,7 @@ class _InfoScreenState extends State<InfoScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
+      initialIndex: widget.initialIndex,
       length: 2,
       child: Scaffold(
         appBar: AppBar(

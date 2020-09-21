@@ -8,7 +8,9 @@ class EdukasiDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        context.bloc<ScreenBloc>().add(GoToMainScreen(bottomNavBarIndex: 1));
+        context
+            .bloc<ScreenBloc>()
+            .add(GoToMainScreen(bottomNavBarIndex: 1, initialIndex: 1));
         return;
       },
       child: Scaffold(
