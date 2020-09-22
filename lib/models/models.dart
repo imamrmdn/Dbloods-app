@@ -10,3 +10,4 @@ part 'stokdarah_model.dart';
 part 'informasi_model.dart';
 part 'edukasi_model.dart';
 part 'event_model.dart';
+part 'event_id_model.dart';

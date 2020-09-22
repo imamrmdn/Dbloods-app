@@ -18,7 +18,7 @@ class AboutAppScreen extends StatelessWidget {
                     .add(GoToMainScreen(bottomNavBarIndex: 3));
               }),
           backgroundColor: mainColor,
-          title: Text('Tentang Aplikasi'),
+          title: Text('Tentang Aplikasi', style: whiteTextFont),
         ),
         body: Column(
           children: <Widget>[

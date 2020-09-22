@@ -112,16 +112,42 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   }
 
   itemBottom(BuildContext context) {
-    return ButtonNext(
-      color: (isValid) ? mainColor : greyColor,
-      text: 'Selanjutnya',
-      onPressed: () {
-        //todo: mendapat donor id
-        if (isValid) {
-          context
-              .bloc<ScreenBloc>()
-              .add(GoToGetDonorIdScreen(widget.eventDonor));
-        }
+    return BlocBuilder<UserBloc, UserState>(
+      builder: (context, userState) {
+        return ButtonNext(
+          color: (isValid) ? mainColor : greyColor,
+          text: 'Selanjutnya',
+          onPressed: () {
+            //todo: mendapat donor id
+            if (isValid) {
+              context.bloc<ScreenBloc>().add(
+                    GoToGetDonorIdScreen(
+                      EventId(
+                        widget.eventDonor,
+                        randomAlphaNumeric(14).toUpperCase(),
+                        '$selectTime:00',
+                        (userState as UserLoaded).user.nama,
+                        (userState as UserLoaded).user.jenkel,
+                        (userState as UserLoaded).user.pekerjaan,
+                      ),
+                    ),
+                  );
+            } else {
+              showDialog(
+                context: context,
+                builder: (_) => AlertDialogAnimation(
+                  image: Image.asset(
+                    'assets/time.png',
+                    width: 250,
+                    height: 130,
+                  ),
+                  message:
+                      'Anda Belum Memilih Jam Event\nSilahkan Pilih Jam Event Terlebih Dahulu.',
+                ),
+              );
+            }
+          },
+        );
       },
     );
   }
@@ -129,6 +155,8 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   generateTimeTable() {
     List<int> jadwal = List.generate(5, (index) => 9 + index * 2);
     List<Widget> widgets = [];
+    int _eventDay =
+        int.parse(formatDate2(widget.eventDonor.tanggalEvent).split('-').first);
 
     widgets.add(
       Container(
@@ -146,16 +174,13 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                 '${jadwal[index]}:00',
                 isSelected: selectTime == jadwal[index],
                 isEnabled: jadwal[index] > DateTime.now().hour ||
-                    int.parse(formatDate2(widget.eventDonor.tanggalEvent)
-                            .split('-')
-                            .first) !=
-                        DateTime.now().day,
+                    _eventDay != DateTime.now().day,
                 onTap: () {
-                  print(jadwal[index]);
+                  // print(jadwal[index]);
                   setState(() {
                     selectTime = jadwal[index];
                     if (jadwal[index] > DateTime.now().hour ||
-                        selectedDate.day != DateTime.now().day) {
+                        _eventDay != DateTime.now().day) {
                       isValid = true;
                     } else {
                       isValid = false;

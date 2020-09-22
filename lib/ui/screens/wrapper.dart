@@ -31,7 +31,7 @@ class Wrapper extends StatelessWidget {
                       : (screenState is OnEventDetailScreen)
                           ? EventDetailScreen(screenState.eventDonor)
                           : (screenState is OnGetDonorIdScreen)
-                              ? GetDonorIdScreen(screenState.eventDonor)
+                              ? GetDonorIdScreen(screenState.eventId)
                               : (screenState is OnInformasiDetailScreen)
                                   ? InformasiDetailScreen(screenState.informasi)
                                   : (screenState is OnEdukasiDetailScreen)

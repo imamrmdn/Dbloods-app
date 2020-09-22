@@ -52,12 +52,12 @@ class GoToEventDetailScreen extends ScreenEvent {
 }
 
 class GoToGetDonorIdScreen extends ScreenEvent {
-  final EventDonor eventDonor;
+  final EventId eventId;
 
-  GoToGetDonorIdScreen(this.eventDonor);
+  GoToGetDonorIdScreen(this.eventId);
 
   @override
-  List<Object> get props => [eventDonor];
+  List<Object> get props => [eventId];
 }
 
 class GoToInformasiDetailScreen extends ScreenEvent {

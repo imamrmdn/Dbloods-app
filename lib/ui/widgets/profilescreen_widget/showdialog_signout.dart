@@ -9,16 +9,18 @@ class ShowDialogSignOut extends StatelessWidget {
   Widget build(BuildContext context) {
     return AlertDialog(
       shape: RoundedRectangleBorder(borderRadius: borderRadius10),
-      title: Text('Apakah anda yakin ingin Sign Out?'),
+      title: Text('Apakah anda yakin ingin Sign Out?',
+          style: blackTextFont.copyWith(
+              fontWeight: FontWeight.bold, fontSize: 18)),
       actions: <Widget>[
         FlatButton(
           onPressed: onPressed1,
           child: Text('Cancel', style: redTextFont),
         ),
         FlatButton(
-          onPressed: onPressed2,
-          child: Text('Yes'),
-        ),
+            onPressed: onPressed2,
+            child: Text('Yes',
+                style: blackTextFont.copyWith(color: Colors.lightBlue))),
       ],
     );
   }
