@@ -60,6 +60,15 @@ class GoToGetDonorIdScreen extends ScreenEvent {
   List<Object> get props => [eventId];
 }
 
+class GoToSuccesScreen extends ScreenEvent {
+  final EventId eventId;
+
+  GoToSuccesScreen(this.eventId);
+
+  @override
+  List<Object> get props => [eventId];
+}
+
 class GoToInformasiDetailScreen extends ScreenEvent {
   final Informasi informasi;
 
@@ -79,8 +88,12 @@ class GoToEdukasiDetailScreen extends ScreenEvent {
 }
 
 class GoToEditProfileScreen extends ScreenEvent {
+  final User user;
+
+  GoToEditProfileScreen(this.user);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [user];
 }
 
 class GoToRiwayatDonorScreen extends ScreenEvent {

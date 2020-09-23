@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
           BlocProvider(create: (_) => InformasiBloc()..add(FetchInformasi())),
           BlocProvider(create: (_) => EdukasiBloc()..add(FetchEdukasi())),
           BlocProvider(create: (_) => EventdonorBloc()..add(FetchEventDonor())),
+          BlocProvider(create: (_) => EventidBloc()),
         ],
         child: BlocBuilder<ThemeBloc, ThemeState>(
           builder: (_, themeState) => MaterialApp(

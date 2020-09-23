@@ -38,7 +38,7 @@ class Wrapper extends StatelessWidget {
                                       ? EdukasiDetailScreen(
                                           screenState.edukasiDonor)
                                       : (screenState is OnEditProfileScreen)
-                                          ? EditProfileScreen()
+                                          ? EditProfileScreen(screenState.user)
                                           : (screenState
                                                   is OnRiwayatDonorScreen)
                                               ? RiwayatDonorScreen()

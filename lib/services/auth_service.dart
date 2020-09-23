@@ -61,7 +61,7 @@ class AuthServices {
   }
 
   // note: Method Forgot Password
-  static Future<void> forgotPassword(String email) async {
+  static Future<void> resetPassword(String email) async {
     await _auth.sendPasswordResetEmail(email: email);
   }
 

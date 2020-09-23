@@ -55,7 +55,9 @@ class _InfoScreenState extends State<InfoScreen> {
               padding: EdgeInsets.only(bottom: 70.0),
               child: RefreshIndicator(
                 color: mainColor,
-                onRefresh: refreshInformasi,
+                onRefresh: () async {
+                  refreshInformasi(context);
+                },
                 child: BlocBuilder<InformasiBloc, InformasiState>(
                     builder: (_, informasiState) {
                   if (informasiState is InformasiLoaded) {
@@ -91,7 +93,9 @@ class _InfoScreenState extends State<InfoScreen> {
               padding: EdgeInsets.only(bottom: 70.0),
               child: RefreshIndicator(
                 color: mainColor,
-                onRefresh: refreshEdukasi,
+                onRefresh: () async {
+                  refreshEdukasi(context);
+                },
                 child: BlocBuilder<EdukasiBloc, EdukasiState>(
                   builder: (_, edukasiState) {
                     if (edukasiState is EdukasiLoaded) {
@@ -124,12 +128,12 @@ class _InfoScreenState extends State<InfoScreen> {
     );
   }
 
-  Future<Null> refreshInformasi() async {
+  Future<Null> refreshInformasi(BuildContext context) async {
     context.bloc<InformasiBloc>().add(FetchInformasi());
     await Future.delayed(Duration(seconds: 2));
   }
 
-  Future<Null> refreshEdukasi() async {
+  Future<Null> refreshEdukasi(BuildContext context) async {
     context.bloc<EdukasiBloc>().add(FetchEdukasi());
     await Future.delayed(Duration(seconds: 2));
   }

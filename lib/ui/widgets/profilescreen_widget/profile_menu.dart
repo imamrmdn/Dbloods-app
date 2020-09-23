@@ -8,18 +8,26 @@ class ProfileMenu extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
         //editproflie
-        InkWell(
-          onTap: () {
-            context.bloc<ScreenBloc>().add(GoToEditProfileScreen());
+        BlocBuilder<UserBloc, UserState>(
+          builder: (_, userState) {
+            return InkWell(
+              onTap: () {
+                context
+                    .bloc<ScreenBloc>()
+                    .add(GoToEditProfileScreen((userState as UserLoaded).user));
+              },
+              child: Row(
+                children: <Widget>[
+                  SvgPicture.asset('assets/edit_profile.svg', height: 30),
+                  SizedBox(width: 10),
+                  Text(
+                    'Edit Profile',
+                    style: blackTextFont.copyWith(fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            );
           },
-          child: Row(
-            children: <Widget>[
-              SvgPicture.asset('assets/edit_profile.svg', height: 30),
-              SizedBox(width: 10),
-              Text('Edit Profile',
-                  style: blackTextFont.copyWith(fontWeight: FontWeight.bold))
-            ],
-          ),
         ),
         SizedBox(height: 20.0),
         Divider(color: greyColor),

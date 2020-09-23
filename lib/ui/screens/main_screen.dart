@@ -4,7 +4,10 @@ class MainScreen extends StatefulWidget {
   final int bottomNavBarIndex;
   final int initialIndex;
 
-  MainScreen({this.bottomNavBarIndex = 0, this.initialIndex = 0});
+  MainScreen({
+    this.bottomNavBarIndex = 0,
+    this.initialIndex = 0,
+  });
 
   @override
   _MainScreenState createState() => _MainScreenState();

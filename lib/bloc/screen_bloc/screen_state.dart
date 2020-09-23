@@ -64,6 +64,14 @@ class OnGetDonorIdScreen extends ScreenState {
 }
 
 //suksespage
+class OnSuccesScreen extends ScreenState {
+  final EventId eventId;
+
+  OnSuccesScreen(this.eventId);
+
+  @override
+  List<Object> get props => [eventId];
+}
 
 class OnInformasiDetailScreen extends ScreenState {
   final Informasi informasi;
@@ -84,8 +92,12 @@ class OnEdukasiDetailScreen extends ScreenState {
 }
 
 class OnEditProfileScreen extends ScreenState {
+  final User user;
+
+  OnEditProfileScreen(this.user);
+
   @override
-  List<Object> get props => [];
+  List<Object> get props => [user];
 }
 
 class OnRiwayatDonorScreen extends ScreenState {

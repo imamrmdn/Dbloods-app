@@ -12,3 +12,4 @@ part 'stokdarah_service.dart';
 part 'event_service.dart';
 part 'informasi_service.dart';
 part 'edukasi_service.dart';
+part 'eventid_service.dart';
