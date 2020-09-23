@@ -25,6 +25,11 @@ class EventIdServices {
 
     List<EventId> eventId = [];
     for (var document in documents) {
+      EventDetail eventDetail = await EventDonorService.getEventDetail(null,
+          eventDonorId: document.data['eventID']);
+
+      // EventDonorState eventState =
+
       eventId.add(
         EventId(
           document.data['eventID'],

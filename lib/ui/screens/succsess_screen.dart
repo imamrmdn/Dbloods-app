@@ -36,7 +36,11 @@ class SuccesScreen extends StatelessWidget {
                         SizedBox(height: 120),
                         ButtonNext(
                           text: 'Lihat Riwayat Donormu',
-                          onPressed: () {},
+                          onPressed: () {
+                            context
+                                .bloc<ScreenBloc>()
+                                .add(GoToRiwayatDonorScreen());
+                          },
                         ),
                         SizedBox(height: 15),
                         Row(

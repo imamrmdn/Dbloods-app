@@ -154,7 +154,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
   }
 
   generateTimeTable() {
-    List<int> jadwal = List.generate(8, (index) => 9 + index * 2);
+    List<int> jadwal = List.generate(4, (index) => 9 + index * 2);
     List<Widget> widgets = [];
     int _eventDay =
         int.parse(formatDate2(widget.eventDonor.tanggalEvent).split('-').first);

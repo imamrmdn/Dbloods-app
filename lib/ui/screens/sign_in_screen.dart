@@ -105,7 +105,64 @@ class _SignInScreenState extends State<SignInScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   Text('Lupa Password?', style: blackTextFont),
-                  Text('Klik Disini.', style: whiteTextFont)
+                  InkWell(
+                    onTap: (!isEmailValid)
+                        ? () {
+                            Flushbar(
+                              duration: Duration(seconds: 2),
+                              icon: Icon(Icons.info_outline),
+                              margin: EdgeInsets.all(8),
+                              padding: EdgeInsets.all(10),
+                              borderRadius: 8.0,
+                              titleText: Text('Anda Belum Memasukan Email',
+                                  style: blackTextFont.copyWith(
+                                      fontWeight: FontWeight.bold)),
+                              messageText: Text(
+                                  'Silahkan Masukan Email Aktif Anda Terlebih Dahulu.',
+                                  style: blackTextFont),
+                              backgroundColor: Colors.yellowAccent,
+                              flushbarPosition: FlushbarPosition.TOP,
+                            )..show(context);
+                          }
+                        : (isEmailValid)
+                            ? () {
+                                Flushbar(
+                                  duration: Duration(seconds: 2),
+                                  icon: Icon(Icons.info_outline),
+                                  margin: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(10),
+                                  borderRadius: 8.0,
+                                  titleText: Text('Oooopsss...',
+                                      style: blackTextFont.copyWith(
+                                          fontWeight: FontWeight.bold)),
+                                  messageText: Text(
+                                      'Email yang anda masukan tidak terdaftar di database.',
+                                      style: blackTextFont),
+                                  backgroundColor: Colors.yellowAccent,
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                )..show(context);
+                              }
+                            : () async {
+                                await AuthServices.resetPassword(
+                                    emailController.text);
+
+                                Flushbar(
+                                  duration: Duration(seconds: 2),
+                                  icon: Icon(Icons.info_outline),
+                                  margin: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(10),
+                                  borderRadius: 8.0,
+                                  titleText: Text('Silahkan Cek Email Anda.',
+                                      style: blackTextFont),
+                                  messageText: Text(
+                                      'Tautan Link Ganti Password Anda telah dikirim melalui email.',
+                                      style: blackTextFont),
+                                  backgroundColor: Colors.greenAccent,
+                                  flushbarPosition: FlushbarPosition.TOP,
+                                )..show(context);
+                              },
+                    child: Text('Klik Disini.', style: whiteTextFont),
+                  )
                 ],
               ),
               Button(
