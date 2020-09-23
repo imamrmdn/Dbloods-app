@@ -122,9 +122,26 @@ class GetDonorIdScreen extends StatelessWidget {
                       ],
                     ),
                     SizedBox(height: 40),
-                    ButtonNext(
-                      text: 'Ikut Berpartisipasi',
-                      onPressed: () {},
+                    BlocBuilder<UserBloc, UserState>(
+                      builder: (_, userState) {
+                        User user = (userState as UserLoaded).user;
+                        return ButtonNext(
+                          text: 'Ikut Berpartisipasi',
+                          onPressed: () {
+                            //todo Succes screen
+                            EventIdTransaction transaction = EventIdTransaction(
+                              userID: user.id,
+                              title: eventId.eventDonor.title,
+                              subtitle: eventId.eventDonor.alamat,
+                              time: DateTime.now(),
+                              picture: eventId.eventDonor.gambar,
+                            );
+                            context
+                                .bloc<ScreenBloc>()
+                                .add(GoToSuccesScreen(eventId, transaction));
+                          },
+                        );
+                      },
                     ),
                   ],
                 ),

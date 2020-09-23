@@ -13,6 +13,8 @@ class EventIdServices {
       'nama': eventId.nama ?? '',
       'jenkel': eventId.jenkel ?? '',
       'pekerjaan': eventId.pekerjaan ?? '',
+      'time': eventId.time.microsecondsSinceEpoch ??
+          DateTime.now().microsecondsSinceEpoch,
     });
   }
 
@@ -31,6 +33,7 @@ class EventIdServices {
           document.data['nama'],
           document.data['jenkel'],
           document.data['pekerjaan'],
+          DateTime.fromMicrosecondsSinceEpoch(document.data['time']),
         ),
       );
     }

@@ -13,3 +13,4 @@ part 'event_service.dart';
 part 'informasi_service.dart';
 part 'edukasi_service.dart';
 part 'eventid_service.dart';
+part 'eventid_transaction_service.dart';

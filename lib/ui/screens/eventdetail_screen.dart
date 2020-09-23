@@ -129,6 +129,7 @@ class _EventDetailScreenState extends State<EventDetailScreen> {
                         (userState as UserLoaded).user.nama,
                         (userState as UserLoaded).user.jenkel,
                         (userState as UserLoaded).user.pekerjaan,
+                        DateTime.now(),
                       ),
                     ),
                   );

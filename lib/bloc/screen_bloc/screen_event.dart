@@ -62,11 +62,12 @@ class GoToGetDonorIdScreen extends ScreenEvent {
 
 class GoToSuccesScreen extends ScreenEvent {
   final EventId eventId;
+  final EventIdTransaction transaction;
 
-  GoToSuccesScreen(this.eventId);
+  GoToSuccesScreen(this.eventId, this.transaction);
 
   @override
-  List<Object> get props => [eventId];
+  List<Object> get props => [eventId, transaction];
 }
 
 class GoToInformasiDetailScreen extends ScreenEvent {

@@ -71,8 +71,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
     tanggalLahirController.text = widget.registrationData.tanggalLahir;
     passwordController.text = widget.registrationData.password.trim();
     confirmPasswordController.text = widget.registrationData.password.trim();
-
-    print('init state');
     if (_currentGolDarah == null && widget.registrationData.golDarah != null) {
       _currentGolDarah = widget.registrationData.golDarah;
     }

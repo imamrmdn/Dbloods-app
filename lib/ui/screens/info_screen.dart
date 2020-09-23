@@ -56,7 +56,7 @@ class _InfoScreenState extends State<InfoScreen> {
               child: RefreshIndicator(
                 color: mainColor,
                 onRefresh: () async {
-                  refreshInformasi(context);
+                  await refreshInformasi(context);
                 },
                 child: BlocBuilder<InformasiBloc, InformasiState>(
                     builder: (_, informasiState) {
@@ -94,7 +94,7 @@ class _InfoScreenState extends State<InfoScreen> {
               child: RefreshIndicator(
                 color: mainColor,
                 onRefresh: () async {
-                  refreshEdukasi(context);
+                  await refreshEdukasi(context);
                 },
                 child: BlocBuilder<EdukasiBloc, EdukasiState>(
                   builder: (_, edukasiState) {

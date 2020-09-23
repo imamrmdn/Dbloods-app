@@ -212,11 +212,19 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                     widget.user.email);
 
                                 Flushbar(
-                                  duration: Duration(milliseconds: 2000),
+                                  duration: Duration(seconds: 2),
+                                  icon: Icon(Icons.info_outline),
+                                  margin: EdgeInsets.all(8),
+                                  padding: EdgeInsets.all(10),
+                                  borderRadius: 8.0,
+                                  titleText: Text('Silahkan Cek Email Anda.',
+                                      style: whiteTextFont.copyWith(
+                                          fontWeight: FontWeight.bold)),
+                                  messageText: Text(
+                                      'Tautan Link Ganti Password Anda telah dikirim melalui email.',
+                                      style: whiteTextFont),
+                                  backgroundColor: Colors.redAccent,
                                   flushbarPosition: FlushbarPosition.TOP,
-                                  backgroundColor: Color(0xFFFF5C83),
-                                  message:
-                                      "Tautan Link untuk mengubah kata sandi telah dikirim ke email anda ",
                                 )..show(context);
                               },
                       ),

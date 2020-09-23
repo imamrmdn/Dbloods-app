@@ -6,6 +6,8 @@ class RiwayatDonorScreen extends StatefulWidget {
 }
 
 class _RiwayatDonorScreenState extends State<RiwayatDonorScreen> {
+  bool isExpiredEventId = false;
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -17,18 +19,178 @@ class _RiwayatDonorScreenState extends State<RiwayatDonorScreen> {
         color: mainColor,
         child: SafeArea(
           child: Scaffold(
-            backgroundColor: whiteColor,
-            appBar: AppBar(
-              title: Text('Riwayat Donor Mu', style: whiteTextFont),
-              elevation: 0,
-              backgroundColor: mainColor,
-            ),
-            body: Center(
-              child: Text('halaman Riwayat Donor'),
+            body: Stack(
+              children: <Widget>[
+                //note: content
+                BlocBuilder<EventidBloc, EventidState>(
+                  builder: (_, eventIdState) {
+                    return Container(
+                      padding: EdgeInsets.only(left: 20, right: 20),
+                      //
+                      child: EventIdView(
+                        isExpiredEventId
+                            ? eventIdState.eventId
+                                .where((eventId) =>
+                                    eventId.time.isBefore(DateTime.now()))
+                                .toList()
+                            : eventIdState.eventId
+                                .where((eventId) =>
+                                    !eventId.time.isBefore(DateTime.now()))
+                                .toList(),
+                      ),
+                    );
+                  },
+                ),
+                //note: header
+                Container(
+                  padding: EdgeInsets.only(top: 10),
+                  color: mainColor,
+                  width: SizeConfig.defaultWidth,
+                  height: 115,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Icon(MdiIcons.heartBox, color: whiteColor),
+                          SizedBox(width: 5),
+                          Text('Riwayat Donormu',
+                              style: whiteTextFont.copyWith(fontSize: 18)),
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  print('riwayat lama');
+                                  setState(() {
+                                    isExpiredEventId = !isExpiredEventId;
+                                  });
+                                },
+                                child: Text('Terbaru',
+                                    style: whiteTextFont.copyWith(
+                                      fontSize: 18,
+                                      color: isExpiredEventId
+                                          ? Colors.white
+                                          : Colors.grey,
+                                    )),
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                height: 4,
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                color: isExpiredEventId
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                              ),
+                            ],
+                          ),
+                          Column(
+                            children: <Widget>[
+                              GestureDetector(
+                                onTap: () {
+                                  print('riwayat baru');
+                                  setState(() {
+                                    isExpiredEventId = !isExpiredEventId;
+                                  });
+                                },
+                                child: Text(
+                                  'Lama',
+                                  style: whiteTextFont.copyWith(
+                                    fontSize: 18,
+                                    color: !isExpiredEventId
+                                        ? Colors.white
+                                        : Colors.grey,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(height: 10),
+                              Container(
+                                height: 4,
+                                width: MediaQuery.of(context).size.width * 0.5,
+                                color: !isExpiredEventId
+                                    ? Colors.blue
+                                    : Colors.transparent,
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+              ],
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+//
+class EventIdView extends StatelessWidget {
+  final List<EventId> eventId;
+
+  EventIdView(this.eventId);
+
+  @override
+  Widget build(BuildContext context) {
+    var sortedEventId = eventId;
+    sortedEventId.sort((event1, event2) => event1.time.compareTo(event2.time));
+
+    return ListView.builder(
+      itemCount: sortedEventId.length,
+      itemBuilder: (_, index) {
+        return Container(
+          margin: EdgeInsets.only(top: index == 0 ? 140 : 30),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+              Row(
+                children: <Widget>[
+                  Container(
+                    width: 80,
+                    height: 90,
+                    decoration: BoxDecoration(
+                      borderRadius: borderRadius8,
+                      image: DecorationImage(
+                        image: NetworkImage(
+                            sortedEventId[index].eventDonor.gambar),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                  ),
+                  SizedBox(width: 20),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: <Widget>[
+                      Text(sortedEventId[index].eventDonor.title,
+                          style: blackTextFont),
+                      SizedBox(height: 30),
+                      Text(
+                        formatDate2(
+                            sortedEventId[index].eventDonor.tanggalEvent),
+                        style: blackTextFont,
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              QrImage(
+                data: sortedEventId[index].donorId,
+                version: QrVersions.auto,
+                size: 80,
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 }

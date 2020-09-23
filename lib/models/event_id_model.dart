@@ -7,6 +7,7 @@ class EventId extends Equatable {
   final String nama;
   final String jenkel;
   final String pekerjaan;
+  final DateTime time;
 
   EventId(
     this.eventDonor,
@@ -15,6 +16,7 @@ class EventId extends Equatable {
     this.nama,
     this.jenkel,
     this.pekerjaan,
+    this.time,
   );
 
   @override
@@ -25,5 +27,6 @@ class EventId extends Equatable {
         nama,
         jenkel,
         pekerjaan,
+        time,
       ];
 }

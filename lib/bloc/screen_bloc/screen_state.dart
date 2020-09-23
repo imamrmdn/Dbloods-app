@@ -66,11 +66,12 @@ class OnGetDonorIdScreen extends ScreenState {
 //suksespage
 class OnSuccesScreen extends ScreenState {
   final EventId eventId;
+  final EventIdTransaction transaction;
 
-  OnSuccesScreen(this.eventId);
+  OnSuccesScreen(this.eventId, this.transaction);
 
   @override
-  List<Object> get props => [eventId];
+  List<Object> get props => [eventId, transaction];
 }
 
 class OnInformasiDetailScreen extends ScreenState {

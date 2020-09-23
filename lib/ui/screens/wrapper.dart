@@ -14,6 +14,8 @@ class Wrapper extends StatelessWidget {
     } else {
       if (!(prevScreenEvent is GoToMainScreen)) {
         context.bloc<UserBloc>().add(LoadUser(firebaseUser.uid));
+        context.bloc<EventidBloc>().add(GetEventId(firebaseUser.uid));
+
         prevScreenEvent = GoToMainScreen();
         context.bloc<ScreenBloc>().add(prevScreenEvent);
       }
@@ -32,28 +34,33 @@ class Wrapper extends StatelessWidget {
                           ? EventDetailScreen(screenState.eventDonor)
                           : (screenState is OnGetDonorIdScreen)
                               ? GetDonorIdScreen(screenState.eventId)
-                              : (screenState is OnInformasiDetailScreen)
-                                  ? InformasiDetailScreen(screenState.informasi)
-                                  : (screenState is OnEdukasiDetailScreen)
-                                      ? EdukasiDetailScreen(
-                                          screenState.edukasiDonor)
-                                      : (screenState is OnEditProfileScreen)
-                                          ? EditProfileScreen(screenState.user)
-                                          : (screenState
-                                                  is OnRiwayatDonorScreen)
-                                              ? RiwayatDonorScreen()
+                              : (screenState is OnSuccesScreen)
+                                  ? SuccesScreen(screenState.eventId,
+                                      screenState.transaction)
+                                  : (screenState is OnInformasiDetailScreen)
+                                      ? InformasiDetailScreen(
+                                          screenState.informasi)
+                                      : (screenState is OnEdukasiDetailScreen)
+                                          ? EdukasiDetailScreen(
+                                              screenState.edukasiDonor)
+                                          : (screenState is OnEditProfileScreen)
+                                              ? EditProfileScreen(
+                                                  screenState.user)
                                               : (screenState
-                                                      is OnAboutAppScreen)
-                                                  ? AboutAppScreen()
-                                                  : MainScreen(
-                                                      bottomNavBarIndex:
-                                                          (screenState
+                                                      is OnRiwayatDonorScreen)
+                                                  ? RiwayatDonorScreen()
+                                                  : (screenState
+                                                          is OnAboutAppScreen)
+                                                      ? AboutAppScreen()
+                                                      : MainScreen(
+                                                          bottomNavBarIndex:
+                                                              (screenState
+                                                                      as OnMainScreen)
+                                                                  .bottomNavBarIndex,
+                                                          initialIndex: (screenState
                                                                   as OnMainScreen)
-                                                              .bottomNavBarIndex,
-                                                      initialIndex: (screenState
-                                                              as OnMainScreen)
-                                                          .initialIndex,
-                                                    ),
+                                                              .initialIndex,
+                                                        ),
 
       // TODO: delete param bottomNavBarIndex if you sign in, add again if you after sign in
       // TODO: poto must be under 100kb
